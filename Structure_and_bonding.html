@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCSE Chemistry: Structure and Bonding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-bottom: 1rem; /* 16px */
+            color: #1F2937; /* gray-800 */
+            border-bottom: 2px solid #06B6D4; /* cyan-500 */
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            margin-top: 1.5rem; /* 24px */
+            margin-bottom: 0.75rem; /* 12px */
+            color: #0E7490; /* cyan-700 */
+        }
+        .content-section h4 {
+            font-size: 1.1rem; /* ~18px */
+            font-weight: 600;
+            margin-top: 1.25rem; /* 20px */
+            margin-bottom: 0.5rem; /* 8px */
+            color: #155E75; /* cyan-800 */
+        }
+        .content-section p, .content-section ul, .content-section ol {
+            margin-bottom: 1rem; /* 16px */
+            line-height: 1.6;
+            color: #374151; /* gray-700 */
+        }
+        .content-section ul, .content-section ol {
+            list-style-position: outside;
+            margin-left: 1.5rem; /* 24px */
+        }
+        .content-section ul {
+            list-style-type: disc;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+        }
+        .content-section .definition, .content-section .key-point {
+            background-color: #F0FDFA; /* cyan-50 */
+            padding: 0.75rem; /* 12px */
+            border-radius: 0.375rem; /* 6px */
+            border-left: 4px solid #06B6D4; /* cyan-500 */
+            margin-bottom: 1rem;
+        }
+        .content-section .example {
+            background-color: #ECFEFF; /* cyan-100 */
+            padding: 1rem; /* 16px */
+            border-left: 4px solid #22D3EE; /* cyan-400 */
+            border-radius: 0.25rem; /* 4px */
+            margin-bottom: 1rem;
+        }
+        .content-section .diagram-placeholder {
+            width: 100%;
+            max-width: 350px; /* Adjusted for typical chemical diagrams */
+            height: auto;
+            margin: 1rem auto;
+            display: block;
+            border: 1px dashed #9CA3AF; /* gray-400 */
+            border-radius: 0.375rem;
+        }
+        .content-section .caption {
+            text-align: center;
+            font-style: italic;
+            color: #6B7280; /* gray-500 */
+            font-size: 0.875rem; /* 14px */
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
+        .sidebar-link.active {
+            background-color: #0891B2; /* cyan-600 */
+            color: white;
+        }
+        .table-auto th, .table-auto td {
+            border: 1px solid #D1D5DB; /* gray-300 */
+            padding: 0.5rem;
+            text-align: left;
+        }
+        .table-auto th {
+            background-color: #F3F4F6; /* gray-100 */
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-button {
+            display: none; /* Hidden by default on larger screens */
+        }
+        @media (max-width: 768px) { /* md breakpoint */
+            .mobile-menu-button {
+                display: block;
+            }
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 30;
+            }
+            #sidebar.open + .sidebar-overlay {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-gray-800 text-white p-6 space-y-2 overflow-y-auto md:relative md:translate-x-0 transition-transform duration-300 ease-in-out">
+            <h1 class="text-2xl font-semibold mb-6 text-center">Structure & Bonding</h1>
+            <nav id="topic-navigation">
+                </nav>
+        </aside>
+
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-white shadow-md p-4 flex items-center justify-between">
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <h2 id="topic-title" class="text-xl font-semibold text-gray-700">Welcome</h2>
+                <div></div> </header>
+
+            <div id="content-area" class="flex-1 p-6 lg:p-8 overflow-y-auto bg-white content-section">
+                <p>Welcome to the KCSE Chemistry: Structure and Bonding Learning App! Select a topic from the sidebar to begin.</p>
+                <p>This module covers how atoms combine to form different substances and how their structure influences their properties.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const contentArea = document.getElementById('content-area');
+        const topicNavigation = document.getElementById('topic-navigation');
+        const topicTitle = document.getElementById('topic-title');
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        // --- Content Data (Extracted and Summarized from DOCX) ---
+        const structureAndBondingTopics = [
+            {
+                id: 'intro_bonding',
+                title: 'Introduction to Bonding',
+                content: `
+                    <h2>Introduction to Chemical Bonding</h2>
+                    <p>Atoms combine to form various substances. The force of attraction that holds atoms (or the particles they form) together is called a <strong>chemical bond</strong>. The arrangement of these bonded particles creates the substance's <strong>structure</strong>.</p>
+                    <div class="key-point">
+                        <p><strong>Valence Electrons:</strong> Electrons in the outermost energy level are crucial for forming chemical bonds.</p>
+                        <p><strong>Stability:</strong> Atoms react and form bonds to achieve a stable electron arrangement, similar to noble gases. This usually means having a full outer shell:</p>
+                        <ul>
+                            <li><strong>Octet Rule:</strong> 8 electrons in the outer shell (e.g., Neon: 2.8).</li>
+                            <li><strong>Duplet Rule:</strong> 2 electrons in the outer shell for elements like Hydrogen and Helium (e.g., Helium: 2).</li>
+                        </ul>
+                    </div>
+                    <img src="https://placehold.co/400x250/E0F2FE/0891B2?text=Diagram:+Electron+Shells+of+Na+and+Cl" alt="Placeholder for Electron Shells" class="diagram-placeholder">
+                    <p class="caption">Illustrate electron shells for an atom that tends to lose electrons (e.g., Na) and one that tends to gain (e.g., Cl).</p>
+                `
+            },
+            {
+                id: 'ionic_bond',
+                title: 'Ionic Bonding',
+                content: `
+                    <h2>Ionic (Electrovalent) Bonding</h2>
+                    <p>An ionic bond is formed by the <strong>complete transfer</strong> of one or more valence electrons from one atom (usually a metal) to another atom (usually a non-metal).</p>
+                    <h3>Formation of Ions:</h3>
+                    <ul>
+                        <li><strong>Cations (Positive Ions):</strong> Formed when an atom <em>loses</em> electrons.
+                            <br><em>Example:</em> Sodium (Na, 2.8.1) loses 1 electron $\\rightarrow$ Na⁺ (2.8)
+                            <br><em>Example:</em> Magnesium (Mg, 2.8.2) loses 2 electrons $\\rightarrow$ Mg²⁺ (2.8)
+                        </li>
+                        <li><strong>Anions (Negative Ions):</strong> Formed when an atom <em>gains</em> electrons.
+                            <br><em>Example:</em> Chlorine (Cl, 2.8.7) gains 1 electron $\\rightarrow$ Cl⁻ (2.8.8)
+                            <br><em>Example:</em> Oxygen (O, 2.6) gains 2 electrons $\\rightarrow$ O²⁻ (2.8)
+                        </li>
+                    </ul>
+                    <img src="https://placehold.co/400x300/E0F2FE/0891B2?text=Diagram:+Formation+of+NaCl" alt="Placeholder for NaCl formation" class="diagram-placeholder">
+                    <p class="caption">Dot-and-cross diagram showing electron transfer from Sodium to Chlorine to form Na⁺ and Cl⁻ ions.</p>
+                    <div class="definition">
+                        <p>The <strong>ionic bond</strong> is the strong electrostatic force of attraction between oppositely charged ions.</p>
+                    </div>
+                    <p>Examples: Sodium chloride (NaCl), Potassium fluoride (KF), Magnesium oxide (MgO), Magnesium chloride (MgCl₂).</p>
+
+                    <h3>Giant Ionic Structures</h3>
+                    <p>Ionic compounds form huge, repeating 3D arrangements of positive and negative ions called a <strong>giant ionic structure</strong> (or ionic lattice). Most ionic substances are crystalline.</p>
+                    <p><em>Example:</em> In NaCl, each Na⁺ ion is surrounded by six Cl⁻ ions, and each Cl⁻ ion by six Na⁺ ions.</p>
+                    <img src="https://placehold.co/400x350/E0F2FE/0891B2?text=Diagram:+NaCl+Lattice+Structure" alt="Placeholder for NaCl lattice" class="diagram-placeholder">
+                    <p class="caption">Diagram illustrating the 3D lattice structure of Sodium Chloride.</p>
+
+                    <h3>Properties of Giant Ionic Structures:</h3>
+                    <ul>
+                        <li><strong>High Melting and Boiling Points:</strong> Due to strong electrostatic forces between ions, requiring much energy to overcome. (e.g., MgO has a higher M.P. than NaCl due to stronger forces from Mg²⁺ and O²⁻ ions).</li>
+                        <li><strong>Electrical Conductivity:</strong>
+                            <ul>
+                                <li><strong>Conduct when molten or in aqueous solution:</strong> Ions are free to move and carry charge.</li>
+                                <li><strong>Do NOT conduct when solid:</strong> Ions are held in fixed positions in the lattice and cannot move.</li>
+                            </ul>
+                        </li>
+                        <li>Often soluble in water but insoluble in organic solvents.</li>
+                        <li>Usually hard and brittle.</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'covalent_bond',
+                title: 'Covalent Bonding',
+                content: `
+                    <h2>Covalent Bonding</h2>
+                    <p>A covalent bond is formed when atoms (usually non-metals) <strong>share</strong> one or more pairs of valence electrons to achieve stable electron configurations.</p>
+                    <img src="https://placehold.co/400x250/E0F2FE/0891B2?text=Diagram:+Hydrogen+Molecule+(H2)" alt="Placeholder for H2 molecule" class="diagram-placeholder">
+                    <p class="caption">Dot-and-cross diagram showing sharing of electrons in a Hydrogen molecule (H-H).</p>
+                    <h3>Types of Covalent Bonds:</h3>
+                    <ul>
+                        <li><strong>Single Bond:</strong> One pair of electrons shared (e.g., H-H in H₂, Cl-Cl in Cl₂).</li>
+                        <li><strong>Double Bond:</strong> Two pairs of electrons shared (e.g., O=O in O₂, O=C=O in CO₂).</li>
+                        <li><strong>Triple Bond:</strong> Three pairs of electrons shared (e.g., N≡N in N₂).</li>
+                    </ul>
+                    <img src="https://placehold.co/400x300/E0F2FE/0891B2?text=Diagrams:+Cl2,+O2,+N2+bonding" alt="Placeholder for Cl2, O2, N2 bonding" class="diagram-placeholder">
+                    <p class="caption">Dot-and-cross diagrams for Chlorine (single), Oxygen (double), and Nitrogen (triple) bonds.</p>
+                    <p>Examples of covalent molecules: Hydrogen (H₂), Water (H₂O), Chlorine (Cl₂), Nitrogen (N₂), Ammonia (NH₃), Carbon(IV) oxide (CO₂), Methane (CH₄).</p>
+                `
+            },
+            {
+                id: 'coordinate_bond',
+                title: 'Co-ordinate (Dative) Bonding',
+                content: `
+                    <h2>Co-ordinate (Dative Covalent) Bonding</h2>
+                    <div class="definition">
+                        <p>A co-ordinate bond is a special type of covalent bond where <strong>both electrons in the shared pair are provided by only one of the bonded atoms</strong>.</p>
+                    </div>
+                    <p>The atom donating the electron pair is called the donor, and the atom accepting the pair is the acceptor (which usually has an empty orbital).</p>
+                    <h3>Examples:</h3>
+                    <ul>
+                        <li><strong>Ammonium Ion (NH₄⁺):</strong> Formed when ammonia (NH₃) donates its lone pair to a hydrogen ion (H⁺).</li>
+                        <img src="https://placehold.co/400x300/E0F2FE/0891B2?text=Diagram:+Formation+of+NH4+" alt="Placeholder for NH4+ formation" class="diagram-placeholder">
+                        <p class="caption">Dot-and-cross diagram showing dative bond formation in Ammonium ion.</p>
+                        <li><strong>Hydroxonium Ion (H₃O⁺):</strong> Formed when water (H₂O) donates one of its lone pairs to H⁺.</li>
+                        <li><strong>Carbon (II) Oxide (CO):</strong> Contains two regular covalent bonds and one co-ordinate bond from oxygen to carbon.</li>
+                        <li><strong>Aluminium Chloride Dimer (Al₂Cl₆):</strong> Formed when two AlCl₃ molecules join, with chlorine atoms donating lone pairs to aluminium atoms to complete their octets.</li>
+                        <img src="https://placehold.co/450x300/E0F2FE/0891B2?text=Diagram:+Al2Cl6+Dimer+Structure" alt="Placeholder for Al2Cl6 dimer" class="diagram-placeholder">
+                        <p class="caption">Structure of Aluminium Chloride dimer showing co-ordinate bonds.</p>
+                    </ul>
+                    <p>Once formed, a co-ordinate bond is indistinguishable from a regular covalent bond.</p>
+                `
+            },
+            {
+                id: 'molecular_structures',
+                title: 'Simple Molecular Structures',
+                content: `
+                    <h2>Simple Molecular Structures</h2>
+                    <p>Many substances with covalent bonds exist as small, discrete (separate) <strong>molecules</strong>. These are said to have simple molecular structures.</p>
+                    <div class="key-point">
+                        <ul>
+                            <li><strong>Within molecules:</strong> Atoms are held by <strong>strong covalent bonds</strong>.</li>
+                            <li><strong>Between molecules:</strong> Molecules are held together by <strong>weak intermolecular forces</strong> (e.g., van der Waals forces, hydrogen bonds - though hydrogen bonds are stronger than typical van der Waals).</li>
+                        </ul>
+                    </div>
+                    <img src="https://placehold.co/400x300/E0F2FE/0891B2?text=Diagram:+Molecules+with+Intermolecular+Forces" alt="Placeholder for intermolecular forces" class="diagram-placeholder">
+                    <p class="caption">Diagram illustrating molecules (e.g., Iodine, I₂) with weak forces between them.</p>
+                    <p>Examples: Water (H₂O), Carbon dioxide (CO₂), Iodine (I₂), Sulphur (S₈), Naphthalene (C₁₀H₈), most gases (O₂, N₂, Cl₂), oils, fats. Sulphur(IV) oxide (SO₂) is a gas at room temperature.</p>
+                    <h3>Properties of Simple Molecular Structures:</h3>
+                    <ul>
+                        <li><strong>Low Melting and Boiling Points:</strong> Only weak intermolecular forces need to be overcome to separate the molecules, requiring little energy. Strong covalent bonds <em>within</em> molecules are NOT broken.</li>
+                        <li><strong>Poor Conductors of Electricity and Heat:</strong> Consist of neutral molecules. No free ions or delocalised electrons to carry charge or efficiently transfer heat.</li>
+                        <li>Often volatile (evaporate easily).</li>
+                        <li>Solubility varies: "Like dissolves like." Non-polar molecules dissolve in non-polar solvents; polar molecules dissolve in polar solvents (like water).</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'giant_covalent_structures',
+                title: 'Giant Covalent Structures',
+                content: `
+                    <h2>Giant Covalent (Atomic) Structures</h2>
+                    <p>In these substances, strong covalent bonds extend throughout the entire crystal, forming a giant 3D network. Every atom is bonded to its neighbors in a continuous structure.</p>
+                    <h3>Examples & Properties:</h3>
+                    <h4>1. Diamond (Allotrope of Carbon)</h4>
+                    <ul>
+                        <li>Each carbon atom is covalently bonded to <strong>four</strong> other carbon atoms in a <strong>tetrahedral arrangement</strong>.</li>
+                        <li><strong>Properties:</strong>
+                            <ul>
+                                <li>Extremely hard (strong, rigid 3D network).</li>
+                                <li>Very high melting and boiling points (many strong covalent bonds to break).</li>
+                                <li>Does NOT conduct electricity (all valence electrons are localized in covalent bonds, no free electrons).</li>
+                                <li>Insoluble in all solvents.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="https://placehold.co/400x350/E0F2FE/0891B2?text=Diagram:+Diamond+Structure" alt="Placeholder for Diamond structure" class="diagram-placeholder">
+                    <p class="caption">Diagram showing the tetrahedral arrangement of carbon atoms in diamond.</p>
+
+                    <h4>2. Graphite (Allotrope of Carbon)</h4>
+                    <ul>
+                        <li>Each carbon atom is covalently bonded to <strong>three</strong> other carbon atoms, forming hexagonal layers.</li>
+                        <li>The fourth valence electron of each carbon atom is <strong>delocalised</strong> and free to move between the layers.</li>
+                        <li>Layers are held together by weak van der Waals forces.</li>
+                        <li><strong>Properties:</strong>
+                            <ul>
+                                <li>Soft and slippery (layers can slide over each other). Used as a lubricant.</li>
+                                <li>High melting and boiling points (strong covalent bonds within layers).</li>
+                                <li>Conducts electricity (due to delocalised electrons).</li>
+                                <li>Less dense than diamond.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="https://placehold.co/400x350/E0F2FE/0891B2?text=Diagram:+Graphite+Layered+Structure" alt="Placeholder for Graphite structure" class="diagram-placeholder">
+                    <p class="caption">Diagram showing the layered structure of graphite and delocalised electrons.</p>
+
+                    <h4>3. Silicon (Si) and Silicon(IV) Oxide (SiO₂, Silica/Quartz)</h4>
+                    <ul>
+                        <li>Similar giant covalent structure to diamond.</li>
+                        <li>Silicon: Each Si atom bonded tetrahedrally to 4 other Si atoms.</li>
+                        <li>Silicon(IV) Oxide: Each Si atom bonded to 4 O atoms, and each O atom bonded to 2 Si atoms, in a tetrahedral arrangement.</li>
+                        <li><strong>Properties:</strong>
+                            <ul>
+                                <li>Very high melting and boiling points.</li>
+                                <li>Hard.</li>
+                                <li>Silicon is a semi-conductor. SiO₂ is an insulator.</li>
+                                <li>Insoluble.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img src="https://placehold.co/400x350/E0F2FE/0891B2?text=Diagram:+Silicon(IV)+Oxide+Structure" alt="Placeholder for SiO2 structure" class="diagram-placeholder">
+                    <p class="caption">Diagram illustrating the giant covalent structure of Silicon(IV) Oxide.</p>
+                `
+            },
+            {
+                id: 'metallic_bond',
+                title: 'Metallic Bonding',
+                content: `
+                    <h2>Metallic Bonding</h2>
+                    <p>This type of bond is found in metals and alloys.</p>
+                    <div class="definition">
+                        <p>A metallic bond is the strong electrostatic attraction between positively charged metal ions and a "sea" of delocalised (free-moving) valence electrons that surround them.</p>
+                    </div>
+                    <p>The metal atoms lose their valence electrons, which become delocalised and are shared by all the ions in the metallic lattice.</p>
+                    <img src="https://placehold.co/400x300/E0F2FE/0891B2?text=Diagram:+Metallic+Bonding+(Electron+Sea)" alt="Placeholder for metallic bonding" class="diagram-placeholder">
+                    <p class="caption">Diagram illustrating positive metal ions in a "sea" of delocalised electrons.</p>
+                    <h3>Properties of Metallic Structures:</h3>
+                    <ul>
+                        <li><strong>Good Conductors of Electricity:</strong> Delocalised electrons are free to move and carry charge when a voltage is applied. Conductivity increases with the number of delocalised electrons per atom (e.g., Al > Mg > Na).</li>
+                        <li><strong>Good Conductors of Heat:</strong> Delocalised electrons can transfer kinetic energy (heat) rapidly.</li>
+                        <li><strong>High Melting and Boiling Points (Generally):</strong> Strong metallic bonds require significant energy to break. Strength depends on factors like ionic charge, ionic size, and number of delocalised electrons (e.g., Al M.P. > Mg M.P.; Li M.P. > K M.P.).</li>
+                        <li><strong>Malleable and Ductile:</strong> Layers of ions can slide over each other without breaking the metallic bonds, as the delocalised electrons can adjust to new positions.</li>
+                        <li><strong>Lustrous (Shiny):</strong> Delocalised electrons reflect light.</li>
+                        <li>High density.</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'period_3_trends',
+                title: 'Bonding Across Period 3',
+                content: `
+                    <h2>Bonding and Structures Across Period 3 (Na to Ar)</h2>
+                    <p>As you move from left to right across Period 3, the type of bonding and structure of the elements and their compounds change significantly, leading to changes in physical properties.</p>
+
+                    <h3>Elements:</h3>
+                    <table class="table-auto w-full my-4 text-sm">
+                        <thead>
+                            <tr><th>Element</th><th>Symbol</th><th>Structure</th><th>Bonding</th><th>Conductivity</th><th>M.P. Trend</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sodium</td><td>Na</td><td>Giant Metallic</td><td>Metallic</td><td>Good</td><td rowspan="3">Increases Na to Al</td></tr>
+                            <tr><td>Magnesium</td><td>Mg</td><td>Giant Metallic</td><td>Metallic</td><td>Good</td></tr>
+                            <tr><td>Aluminium</td><td>Al</td><td>Giant Metallic</td><td>Metallic</td><td>Good</td></tr>
+                            <tr><td>Silicon</td><td>Si</td><td>Giant Covalent</td><td>Covalent</td><td>Semi-conductor</td><td>Highest</td></tr>
+                            <tr><td>Phosphorus</td><td>P (P₄)</td><td>Simple Molecular</td><td>Covalent</td><td>Poor</td><td rowspan="4">Decreases P to Ar (low)</td></tr>
+                            <tr><td>Sulphur</td><td>S (S₈)</td><td>Simple Molecular</td><td>Covalent</td><td>Poor</td></tr>
+                            <tr><td>Chlorine</td><td>Cl (Cl₂)</td><td>Simple Molecular</td><td>Covalent</td><td>Poor</td></tr>
+                            <tr><td>Argon</td><td>Ar (Ar)</td><td>Simple Atomic (Monatomic molecules)</td><td>(Weak Van der Waals)</td><td>Poor</td></tr>
+                        </tbody>
+                    </table>
+                    <img src="https://placehold.co/600x300/E0F2FE/0891B2?text=Graph:+Melting+Points+Across+Period+3+Elements" alt="Placeholder for M.P. graph Period 3 Elements" class="diagram-placeholder">
+                    <p class="caption">Graph showing the trend in melting points of Period 3 elements.</p>
+
+                    <h3>Oxides of Period 3 Elements:</h3>
+                    <table class="table-auto w-full my-4 text-sm">
+                        <thead>
+                            <tr><th>Oxide</th><th>Formula</th><th>Bonding</th><th>Structure</th><th>Acid/Base Nature</th><th>Reaction with Water</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sodium Oxide</td><td>Na₂O</td><td>Ionic</td><td>Giant Ionic</td><td>Basic</td><td>Forms NaOH (alkaline solution)</td></tr>
+                            <tr><td>Magnesium Oxide</td><td>MgO</td><td>Ionic</td><td>Giant Ionic</td><td>Basic</td><td>Slightly reacts (forms Mg(OH)₂, sparingly soluble)</td></tr>
+                            <tr><td>Aluminium Oxide</td><td>Al₂O₃</td><td>Ionic with covalent character</td><td>Giant Ionic (complex)</td><td>Amphoteric</td><td>Insoluble</td></tr>
+                            <tr><td>Silicon(IV) Oxide</td><td>SiO₂</td><td>Covalent</td><td>Giant Covalent</td><td>Acidic</td><td>Insoluble</td></tr>
+                            <tr><td>Phosphorus(V) Oxide</td><td>P₄O₁₀</td><td>Covalent</td><td>Simple Molecular</td><td>Acidic</td><td>Forms H₃PO₄ (acidic solution)</td></tr>
+                            <tr><td>Sulphur Dioxide</td><td>SO₂</td><td>Covalent</td><td>Simple Molecular</td><td>Acidic</td><td>Forms H₂SO₃ (acidic solution)</td></tr>
+                            <tr><td>Sulphur Trioxide</td><td>SO₃</td><td>Covalent</td><td>Simple Molecular</td><td>Acidic</td><td>Forms H₂SO₄ (acidic solution)</td></tr>
+                            <tr><td>Dichlorine Monoxide</td><td>Cl₂O</td><td>Covalent</td><td>Simple Molecular</td><td>Acidic</td><td>Forms HOCl (acidic solution)</td></tr>
+                        </tbody>
+                    </table>
+                     <p>Generally, metallic oxides are basic, non-metallic oxides are acidic, and aluminium oxide is amphoteric.</p>
+
+                    <h3>Chlorides of Period 3 Elements:</h3>
+                     <table class="table-auto w-full my-4 text-sm">
+                        <thead>
+                            <tr><th>Chloride</th><th>Formula</th><th>Bonding</th><th>Structure</th><th>Reaction with Water</th><th>Solution pH</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sodium Chloride</td><td>NaCl</td><td>Ionic</td><td>Giant Ionic</td><td>Dissolves</td><td>Neutral (pH 7)</td></tr>
+                            <tr><td>Magnesium Chloride</td><td>MgCl₂</td><td>Ionic</td><td>Giant Ionic</td><td>Dissolves</td><td>Slightly acidic (pH ~6.5 due to slight hydrolysis)</td></tr>
+                            <tr><td>Aluminium Chloride</td><td>AlCl₃ (Al₂Cl₆ as vapor)</td><td>Covalent (forms dimer) / Ionic character</td><td>Simple Molecular (dimer) / Layered lattice</td><td>Hydrolyses vigorously</td><td>Acidic (pH ~3)</td></tr>
+                            <tr><td>Silicon(IV) Chloride</td><td>SiCl₄</td><td>Covalent</td><td>Simple Molecular</td><td>Hydrolyses vigorously</td><td>Acidic (pH ~2)</td></tr>
+                            <tr><td>Phosphorus(III) Chloride</td><td>PCl₃</td><td>Covalent</td><td>Simple Molecular</td><td>Hydrolyses</td><td>Acidic</td></tr>
+                            <tr><td>Phosphorus(V) Chloride</td><td>PCl₅</td><td>Covalent (can ionise in some solvents)</td><td>Simple Molecular (in gas)</td><td>Hydrolyses vigorously</td><td>Acidic</td></tr>
+                            <tr><td>Disulphur Dichloride</td><td>S₂Cl₂</td><td>Covalent</td><td>Simple Molecular</td><td>Hydrolyses</td><td>Acidic</td></tr>
+                             <tr><td>Chlorine</td><td>Cl₂</td><td>Covalent</td><td>Simple Molecular</td><td>Reacts slightly (disproportionation)</td><td>Acidic</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Ionic chlorides (Na, Mg) tend to form neutral or near-neutral solutions. Covalent chlorides (Al, Si, P, S) hydrolyse in water to produce acidic solutions.</p>
+                `
+            }
+        ];
+
+        // --- Functions ---
+        function displayContent(topicId) {
+            const topic = structureAndBondingTopics.find(t => t.id === topicId);
+            if (topic) {
+                contentArea.innerHTML = topic.content;
+                topicTitle.textContent = topic.title;
+
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.topic === topicId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.style.display = 'none';
+                }
+                contentArea.scrollTop = 0; // Scroll to top of content
+            } else {
+                contentArea.innerHTML = '<p>Topic not found. Please select a valid topic.</p>';
+                topicTitle.textContent = 'Error';
+            }
+        }
+
+        function populateNavigation() {
+            const navFragment = document.createDocumentFragment();
+            structureAndBondingTopics.forEach(topic => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = topic.title;
+                link.classList.add('block', 'py-2.5', 'px-4', 'rounded', 'transition', 'duration-200', 'hover:bg-gray-700', 'sidebar-link', 'text-sm');
+                link.dataset.topic = topic.id;
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    displayContent(topic.id);
+                });
+                navFragment.appendChild(link);
+            });
+            topicNavigation.appendChild(navFragment);
+        }
+
+        // --- Event Listeners ---
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.style.display = 'none';
+        });
+
+        // --- Initialization ---
+        populateNavigation();
+        if (structureAndBondingTopics.length > 0) {
+            const initialTopicId = structureAndBondingTopics.find(t => t.id === 'intro_bonding') ? 'intro_bonding' : structureAndBondingTopics[0].id;
+            displayContent(initialTopicId);
+        }
+
+    </script>
+</body>
+</html>
