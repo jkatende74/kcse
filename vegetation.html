@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCSE Geography: Vegetation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section h2 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-bottom: 1rem; /* 16px */
+            color: #1F2937; /* gray-800 */
+            border-bottom: 2px solid #D1D5DB; /* gray-300 */
+            padding-bottom: 0.5rem;
+        }
+        .content-section h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            margin-top: 1.5rem; /* 24px */
+            margin-bottom: 0.75rem; /* 12px */
+            color: #374151; /* gray-700 */
+        }
+        .content-section h4 {
+            font-size: 1.1rem; /* ~18px */
+            font-weight: 600;
+            margin-top: 1.25rem; /* 20px */
+            margin-bottom: 0.5rem; /* 8px */
+            color: #4B5563; /* gray-600 */
+        }
+        .content-section p, .content-section ul, .content-section ol, .content-section .example, .content-section .formula {
+            margin-bottom: 1rem; /* 16px */
+            line-height: 1.6;
+            color: #4B5563; /* gray-600 */
+        }
+        .content-section ul, .content-section ol {
+            list-style-position: outside;
+            margin-left: 1.5rem; /* 24px */
+        }
+        .content-section ul {
+            list-style-type: disc;
+        }
+        .content-section ol {
+            list-style-type: decimal;
+        }
+        .content-section .formula, .content-section .definition {
+            background-color: #F3F4F6; /* gray-100 */
+            padding: 0.75rem; /* 12px */
+            border-radius: 0.375rem; /* 6px */
+            border-left: 4px solid #6366F1; /* indigo-500 */
+        }
+        .content-section .example {
+            background-color: #E0E7FF; /* indigo-100 */
+            padding: 1rem; /* 16px */
+            border-left: 4px solid #818CF8; /* indigo-400 */
+            border-radius: 0.25rem; /* 4px */
+        }
+        .content-section .diagram-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 1rem auto;
+            display: block;
+            border: 1px dashed #9CA3AF; /* gray-400 */
+            border-radius: 0.375rem;
+        }
+        .content-section .caption {
+            text-align: center;
+            font-style: italic;
+            color: #6B7280; /* gray-500 */
+            font-size: 0.875rem; /* 14px */
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
+        .sidebar-link.active {
+            background-color: #4F46E5; /* indigo-600 */
+            color: white;
+        }
+        /* Mobile menu button */
+        .mobile-menu-button {
+            display: none; /* Hidden by default on larger screens */
+        }
+        @media (max-width: 768px) { /* md breakpoint */
+            .mobile-menu-button {
+                display: block;
+            }
+            #sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 30;
+            }
+            #sidebar.open + .sidebar-overlay {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-72 bg-gray-800 text-white p-6 space-y-2 overflow-y-auto md:relative md:translate-x-0 transition-transform duration-300 ease-in-out">
+            <h1 class="text-2xl font-semibold mb-6 text-center">Vegetation</h1>
+            <nav id="topic-navigation">
+                </nav>
+        </aside>
+
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <header class="bg-white shadow-md p-4 flex items-center justify-between">
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <h2 id="topic-title" class="text-xl font-semibold text-gray-700">Welcome</h2>
+                <div></div> </header>
+
+            <div id="content-area" class="flex-1 p-6 lg:p-8 overflow-y-auto bg-white content-section">
+                <p>Welcome to the KCSE Geography Vegetation Learning App! Select a topic from the sidebar to explore the fascinating world of plants and their distribution.</p>
+                <p>This module is based on the KCSE syllabus and information from your provided learning materials.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const contentArea = document.getElementById('content-area');
+        const topicNavigation = document.getElementById('topic-navigation');
+        const topicTitle = document.getElementById('topic-title');
+        const sidebar = document.getElementById('sidebar');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+        // --- Content Data (Extracted and Summarized from PDF) ---
+        const vegetationTopics = [
+            {
+                id: 'introduction_vegetation',
+                title: 'Introduction to Vegetation',
+                content: `
+                    <h2>Introduction to Vegetation</h2>
+                    <div class="definition">
+                        <p><strong>Vegetation:</strong> All the plants that grow together in any area. It is a community of plants, such as trees, shrubs, herbs, and grasses, that cover a place and give it a distinct character.</p>
+                        <p><strong>Plant Community:</strong> An assemblage of plants in a specific physical habitat or site. Plants growing together in a particular habitat form a plant community.</p>
+                    </div>
+                    <h3>Types of Vegetation:</h3>
+                    <ul>
+                        <li><strong>Natural (Climatic Climax) Vegetation:</strong> The original plant cover undisturbed by humans, reaching a stable state determined by physical conditions.</li>
+                        <li><strong>Semi-natural (Derived or Secondary) Vegetation:</strong> Vegetation recovering from human disturbance or whose characteristics are attributed to human influence (e.g., secondary forests, savannas from forest clearance).</li>
+                        <li><strong>Cultivated Vegetation:</strong> Vegetation planted by people.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Diagram:+Types+of+Vegetation" alt="Placeholder for Types of Vegetation diagram" class="diagram-placeholder">
+                    <p class="caption">Consider a diagram illustrating natural, semi-natural, and cultivated vegetation landscapes.</p>
+                `
+            },
+            {
+                id: 'factors_influencing_vegetation',
+                title: 'Factors Influencing Vegetation',
+                content: `
+                    <h2>Factors Influencing Vegetation Distribution</h2>
+                    <p>Vegetation distribution is influenced by several factors, broadly categorized as:</p>
+                    <ol>
+                        <li>Physiographic (Geomorphic) Factors</li>
+                        <li>Climatic Factors</li>
+                        <li>Edaphic (Pedological) Factors</li>
+                        <li>Biotic (Anthropogenic) Factors</li>
+                    </ol>
+
+                    <h3>1. Physiographic (Geomorphic) Factors</h3>
+                    <p>These relate to the physical features of the land.</p>
+                    <h4>Altitude</h4>
+                    <p>Height above sea level affects temperature and rainfall, which in turn affect vegetation. Temperature generally decreases with increasing altitude.</p>
+                    <p><em>Examples:</em> Red mangrove (sea level), Bamboo (highlands/mountains).</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Diagram:+Altitude+and+Vegetation+Zones" alt="Placeholder for Altitude and Vegetation Zones" class="diagram-placeholder">
+                    <p class="caption">A diagram showing how vegetation types change with increasing altitude on a mountain.</p>
+
+                    <h4>Terrain and Drainage</h4>
+                    <p>The physical appearance of an area (steepness, ruggedness) influences vegetation. Gentle slopes are more conducive to stable vegetation than steep slopes due to better water infiltration and less runoff. Drainage relates to soil organisms, soil water, and soil texture.</p>
+
+                    <h4>Aspect</h4>
+                    <p>The direction a slope faces influences vegetation by affecting exposure to sunlight and prevailing winds. Slopes facing the sun tend to be warmer and drier.</p>
+
+                    <h3>2. Climatic Factors</h3>
+                    <p>These include elements like sunlight, temperature, precipitation, and wind.</p>
+                    <h4>Sunlight</h4>
+                    <p>Necessary for photosynthesis. Plant growth is limited by the amount of solar radiation plants can utilize. Sunlight varies in quality, intensity, and duration (photoperiod). Photoperiodism is the plant's response to day-length.</p>
+
+                    <h4>Temperature</h4>
+                    <p>Plants require specific temperature ranges for growth. Climates are classified based on temperature averages (Megatherms, Tropophytes, Mesotherms, Microtherms, Hekisotherms).</p>
+
+                    <h4>Precipitation (Rainfall)</h4>
+                    <p>Crucial for germination, photosynthesis, growth, flowering, and fruiting. Heavy, reliable rainfall supports luxuriant vegetation; little, unreliable rainfall supports poor, scanty vegetation. Water transports nutrients and maintains turgidity.</p>
+
+                    <h4>Wind</h4>
+                    <p>Influences plant form. Strong winds, especially with low humidity, can increase evaporation and cause physical damage or stunted growth.</p>
+
+                    <h3>3. Edaphic (Pedological) Factors</h3>
+                    <p>These relate to soil properties. Soil provides anchorage, water, and mineral nutrients.</p>
+                    <h4>Soil Texture</h4>
+                    <p>The proportion of different soil particles affects root penetration, nutrient supply, water content, aeration, and temperature.</p>
+
+                    <h4>Soil pH</h4>
+                    <p>The acidity or alkalinity of the soil affects mineral nutrient availability. Most minerals are available around pH 6.5 (neutral).</p>
+                    
+                    <h4>Inorganic Mineral Material and Organic Matter</h4>
+                    <p>These are major determinants of soil fertility. Nutrients from rock weathering and decomposition of organic matter are absorbed by plants.</p>
+
+                    <h3>4. Biotic and Anthropogenic Factors</h3>
+                    <p>These are effects from living organisms, including humans.</p>
+                    <h4>Competition</h4>
+                    <p>Plants compete for resources like space, light, water, and soil nutrients, especially when limited.</p>
+
+                    <h4>Effects of Animals</h4>
+                    <p>Beneficial (seed dispersal, pollination) and antagonistic (plants as food source).</p>
+
+                    <h4>Effects of Human Beings</h4>
+                    <p>Significant modification of vegetation (derived/secondary vegetation). Impacts include modifying environments, creating new habitats, altering soil, pollution, introducing non-native plants (e.g., water hyacinth), clearing land, grazing, and starting fires.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Diagram:+Human+Impact+on+Vegetation" alt="Placeholder for Human Impact on Vegetation" class="diagram-placeholder">
+                    <p class="caption">Illustrate deforestation, agriculture, and afforestation as examples of human impact.</p>
+                `
+            },
+            {
+                id: 'kenya_vegetation',
+                title: 'Vegetation of Kenya',
+                content: `
+                    <h2>Characteristics of Major Vegetation Regions of Kenya</h2>
+                    <p>Much of Kenya's original natural vegetation is now secondary or derived, with distinct types shaped by altitude, rainfall, and soils.</p>
+
+                    <h3>Forest Vegetation</h3>
+                    <p>Composed of evergreen and deciduous trees. Evergreen forests are at higher altitudes.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Kenyan+Highland+Forest" alt="Placeholder for Kenyan Highland Forest" class="diagram-placeholder">
+                    <p class="caption">Image of a lush highland forest in Kenya.</p>
+                    <ul>
+                        <li><strong>Plateau/Lowland Forests:</strong> E.g., Lake Victoria region, coast (Arabuko Sokoke). Mangrove forests in tidal areas.</li>
+                        <li><strong>Mountain/Closed Forests:</strong> Highlands above 1,800m (e.g., Podo, Cedar, Camphor). Kakamega, Aberdare.</li>
+                        <li><strong>Bamboo Thickets:</strong> Above 3,000m on high mountains (Mt. Kenya, Aberdares).</li>
+                        <li><strong>Mangrove Forests:</strong> Coastal tidal areas. Unique adaptations to saline water.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Mangrove+Forest+Roots" alt="Placeholder for Mangrove Forest Roots" class="diagram-placeholder">
+                    <p class="caption">Image showing the characteristic prop roots of mangrove trees.</p>
+
+                    <h3>Savanna Vegetation</h3>
+                    <p>Open grasslands with scattered woodlands or bushes. Covers large areas of Kenya.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Kenyan+Savanna+Landscape" alt="Placeholder for Kenyan Savanna Landscape" class="diagram-placeholder">
+                    <p class="caption">Typical savanna landscape with acacia trees and grasslands.</p>
+                    <h4>Savanna Woodland</h4>
+                    <p>More continuous tree cover with spreading canopies. Thorny, drought-resistant acacia and baobab are common.</p>
+                    <h4>Savanna Grassland (Scattered Tree Grassland)</h4>
+                    <p>More open with fewer scattered trees. Supports trees like shea butter nut, baobab, acacia. Dominant grasses: elephant grass (Hyparrhenia), Cymbopogon afronardus.</p>
+
+                    <h3>Arid and Semi-Arid Vegetation</h3>
+                    <p>Vast plains with low rainfall (<625mm annually) and high temperatures.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Arid+Landscape+in+Kenya" alt="Placeholder for Arid Landscape in Kenya" class="diagram-placeholder">
+                    <p class="caption">Image of typical vegetation in an arid region of Kenya, e.g., Turkana.</p>
+                    <h4>Bushland and Thicket</h4>
+                    <p>Areas with 375-625mm rainfall. Bushy, thorny, often tall acacia trees separated by thorny shrubs. Grass is unusual.</p>
+                    <h4>Semi-desert and Desert Scrub Vegetation</h4>
+                    <p>Areas below 375mm rainfall. Short, stunted scrub and bush, bare ground. Grass rare. Plants: hard/short grasses, spiny shrubs, cactus, short thorny trees (Baobab, Euphorbia, Commiphora, Acacia).</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Euphorbia+Plant" alt="Placeholder for Euphorbia Plant" class="diagram-placeholder">
+                    <p class="caption">Image of a Euphorbia plant, characteristic of arid areas.</p>
+
+                    <h3>Heath and Moorland Vegetation</h3>
+                    <p>Highest mountains above tree line (>3,500m). Afro-alpine plants adapted to extreme cold and strong winds. Found on upper slopes of Mt. Kenya and Aberdare Ranges.</p>
+                    <p><strong>Heath:</strong> Scrubby, low-growing evergreen shrubs (e.g., with small bell-shaped flowers).</p>
+                    <p><strong>Moorland:</strong> Land area with heath, coarse grass, and mosses.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Mt.+Kenya+Heathland" alt="Placeholder for Mt. Kenya Heathland" class="diagram-placeholder">
+                    <p class="caption">Image of heath and moorland vegetation on Mount Kenya.</p>
+                `
+            },
+            {
+                id: 'world_forests',
+                title: 'World Vegetation: Forests',
+                content: `
+                    <h2>Major Vegetation Regions of the World: Forests</h2>
+                    
+                    <h3>Equatorial Forests (Tropical Rainforest)</h3>
+                    <p>Location: 4-5° N/S of equator (Amazon, Zaire basins, West African coast, SE Asia).</p>
+                    <p>Climate: Hot and wet ($24-27^{\circ}C$, >1500mm rainfall).</p>
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Closely set trees with three distinct canopy layers (highest ~40m), dense shade at ground level.</li>
+                        <li>Tall, smooth-barked trees, often with buttressed trunks. Roots spread sideways.</li>
+                        <li>Lianas and epiphytes (orchids, mosses, ferns, strangling figs).</li>
+                        <li>Broad, drip-tip shaped leaves (shed water, discourage epiphytes, efficient transpiration).</li>
+                        <li>Saprophytes (lack chlorophyll, depend on decomposed humus, symbiotic with fungi).</li>
+                        <li>High species diversity (up to 1,500 species/km²), making commercial exploitation difficult.</li>
+                        <li>Valuable hardwoods: Mahogany, Ebony, Teak, Mvule, Camphor.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Diagram:+Rainforest+Canopy+Layers" alt="Placeholder for Rainforest Canopy Layers" class="diagram-placeholder">
+                    <p class="caption">A diagram illustrating the distinct canopy layers of a tropical rainforest.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Buttress+Roots" alt="Placeholder for Buttress Roots" class="diagram-placeholder">
+                    <p class="caption">Image showing the buttress roots of a large rainforest tree.</p>
+
+                    <h3>Tropical Monsoon Forests</h3>
+                    <p>Location: Bangladesh, Burma, Vietnam, Philippines, Sri Lanka, Java.</p>
+                    <p>Adaptation: Seasonal changes (wet/dry seasons), many species are deciduous.</p>
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Specific tree species often predominate (e.g., Teak in Burma, Sal in India, Eucalyptus in Queensland).</li>
+                        <li>Trees grow fast, up to 30m.</li>
+                        <li>Lack a continuous canopy.</li>
+                    </ul>
+
+                    <h3>Temperate Hardwood Forest (Deciduous Forests)</h3>
+                    <p>Location: 30-50°N (N. America, Europe, China, Japan), some in Southern Hemisphere inland valleys.</p>
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Trees are deciduous (shed broad leaves in autumn, leafless in winter to minimize water loss).</li>
+                        <li>Dense canopy in summer.</li>
+                        <li>Lower layers of shrubs and small trees.</li>
+                        <li>Main species: Oak, Birch, Ash, Sycamore, Maple, Chestnut, Beech.</li>
+                        <li>Trees often grow in stands of the same species.</li>
+                        <li>Durable and strong hardwoods.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Deciduous+Forest+in+Autumn" alt="Placeholder for Deciduous Forest in Autumn" class="diagram-placeholder">
+                    <p class="caption">Image of a temperate deciduous forest showing autumn colors.</p>
+
+                    <h3>Coniferous Forests (Boreal Forests/Taiga)</h3>
+                    <p>Location: 45-75° N/S, mainly N. American and Eurasian continental belts. Some on Southern Hemisphere mountains.</p>
+                    <h4>Characteristics:</h4>
+                    <ul>
+                        <li>Conical shape (helps shed snow).</li>
+                        <li>Needle-shaped leaves (reduce water loss in winter when soil moisture is frozen).</li>
+                        <li>Composed of one or two species (evergreen conifers: Spruce, Fir, Pine. Larch, dwarf pine in drier areas).</li>
+                        <li>Slow maturation due to cold.</li>
+                        <li>Thick barks (protect from frost).</li>
+                        <li>Little undergrowth, shallow roots, straight trunks.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Coniferous+Forest" alt="Placeholder for Coniferous Forest" class="diagram-placeholder">
+                    <p class="caption">Image of a coniferous forest, highlighting the conical shape of trees.</p>
+
+                    <h3>Mixed Forests</h3>
+                    <p>Location: Transitional zones between coniferous and deciduous forests (parts of Canada, Russia, Japan, N. America).</p>
+                    <p>Characteristics: Species not always intermingled. May have characteristics of either coniferous or deciduous. Mediterranean maquis/macchia is partly coniferous, partly broad-leaved.</p>
+                `
+            },
+            {
+                id: 'world_grasslands',
+                title: 'World Vegetation: Grasslands',
+                content: `
+                    <h2>Major Vegetation Regions of the World: Grasslands</h2>
+                    <p>Categorized into Tropical Savanna, Temperate grasslands, Arid grasslands, and Montane grasslands.</p>
+
+                    <h3>Tropical Savanna</h3>
+                    <p>Location: Tropical continental areas, ~10° N/S of the Tropics.</p>
+                    <p>Characteristics: Mixture of trees and grass; density and height vary with rainfall.</p>
+                    <h4>Sub-classifications by decreasing rainfall:</h4>
+                    <ul>
+                        <li><strong>Tall Grass and Woodlands (Dry Forest/Miombo Woodland/Tree Steppe):</strong> Widely spaced trees (<20m, flat-topped, spreading), tall grasses/shrubs below. Prolonged dry season (4-7 months). Trees adapt by shedding leaves, wax bark, spiky leaves, thorns. Grasses: Elephant grass (Hyparrhenia), Cymbopogon afronardus.</li>
+                        <li><strong>Parklands:</strong> Dominated by grass, fewer/lower isolated trees. Treeless except along rivers. Red oat grass (Themeda triandra) in Kenyan parklands (Maasai Mara, Amboseli). Short acacia (1.8-2.4m) dominant.</li>
+                        <li><strong>Thornbush and Scrub:</strong> Rainshadow areas, drier (rainfall <650mm, unreliable). Dominated by acacia and euphorbia. Stunted trees, scaly barks. Drought-resistant plants (Baobab, Euphorbia, Commiphora, Acacia).</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+African+Savanna+with+Wildlife" alt="Placeholder for African Savanna with Wildlife" class="diagram-placeholder">
+                    <p class="caption">Image of a typical African savanna, perhaps with some wildlife.</p>
+
+                    <h3>Temperate Grasslands</h3>
+                    <p>Examples: Prairies (Canada/USA), Pampas (Argentina), Veld (S. Africa), Downs (Australia/NZ), Steppes (Eurasia).</p>
+                    <h4>Prairies:</h4>
+                    <ul>
+                        <li>True Prairie: Tall grasses (up to 2.4m, e.g., Big Blue stem, Indian grass).</li>
+                        <li>Mixed Prairie: Shorter grasses (e.g., Buffalo grass, Gramma grass, Stipa grass).</li>
+                        <li>Pacific and Palouse Prairies.</li>
+                        <li>Xerophytic grasses in drier zones (SW Texas, New Mexico, Arizona) with cactus and sagebrush.</li>
+                    </ul>
+                    <h4>Veld of South Africa:</h4>
+                    <p>Eastern high plateau. Extensive grass, little tree/shrub mix. True grassveld dominated by Red oat grass. Often reduced to rangeland due to fires. Taller Andropogon grass ('Tambookie') in better-watered areas.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Temperate+Grassland+(e.g.,+Prairies)" alt="Placeholder for Temperate Grassland" class="diagram-placeholder">
+                    <p class="caption">Image of a vast temperate grassland like the North American Prairies.</p>
+
+                    <h3>Arid Grasslands</h3>
+                    <p>Limited to sandy areas, saltpans, limestone areas in mid-latitudes. Characterized by lime/gypsum crust (Caliche) near surface due to low rainfall. Examples: Bog areas in Britain (heath, deer's hair grass), tropical species like wild olive, oak, broom.</p>
+
+                    <h3>Montane Grasslands</h3>
+                    <p>Occur on mountains (Sri Lanka, East Africa, Europe). Irregular patches. Higher latitudes: above tree line, short vegetative period. Alpine mountains (Europe): rich pastures for transhumance. East African mountains: slopes up to 3000m, thick tufts. Sri Lanka (Patana): above 1800m.</p>
+                `
+            },
+            {
+                id: 'world_desert_alpine',
+                title: 'World Veg: Desert & Alpine',
+                content: `
+                    <h2>World Vegetation: Desert and Alpine/Montane</h2>
+
+                    <h3>Desert Vegetation</h3>
+                    <p>Characterized by scarce vegetation cover adapted to arid conditions.</p>
+                    <h4>Hot Deserts:</h4>
+                    <ul>
+                        <li>Xerophytic plants (highly tolerant to drought).</li>
+                        <li>Deciduous bushes and shrubs (e.g., acacia).</li>
+                        <li>Adaptations: Sunk stomata, reduced leaves/spines.</li>
+                        <li>Halophytes (salt-tolerant plants) in saline areas.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Hot+Desert+Vegetation+(Cacti)" alt="Placeholder for Hot Desert Vegetation" class="diagram-placeholder">
+                    <p class="caption">Image showing typical hot desert vegetation like cacti and sparse shrubs.</p>
+
+                    <h4>Cold Deserts:</h4>
+                    <p>Location: Polar regions, extremely high mountains.</p>
+                    <p>Aridity due to frozen water, making it scarce for plant life.</p>
+                    <p>Vegetation is typically very sparse, consisting of low-growing shrubs, mosses, and lichens (tundra-like).</p>
+
+                    <h3>Alpine or Montane Vegetation</h3>
+                    <p>Found on high mountains, showing zonation below the snow line. Zones vary with latitude and aspect.</p>
+                    <h4>Typical Zonation (especially in tropics):</h4>
+                    <ol>
+                        <li>Rainforests (at the base, if conditions favorable)</li>
+                        <li>Montane Forests (can include bamboo belts)</li>
+                        <li>Grasslands</li>
+                        <li>Sub-alpine Belt (Ericaceous belt, flower belt)</li>
+                        <li>Alpine Belt (Alpine tundra vegetation)</li>
+                        <li>Snow Line (Permanent snow/ice)</li>
+                    </ol>
+                    <p>Leeward lower slopes might have semi-desert scrubs.</p>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Diagram:+Mountain+Vegetation+Zonation" alt="Placeholder for Mountain Vegetation Zonation" class="diagram-placeholder">
+                    <p class="caption">A diagram illustrating the different vegetation zones on a high mountain.</p>
+                `
+            },
+            {
+                id: 'economic_significance',
+                title: 'Economic Significance of Vegetation',
+                content: `
+                    <h2>Economic Significance of Vegetation</h2>
+                    <p>Vegetation plays a crucial role in the environment and provides numerous economic benefits:</p>
+                    <ul>
+                        <li><strong>Medicinal Value:</strong> Many plants are sources of traditional and modern medicines.</li>
+                        <li><strong>Building/Construction Materials:</strong> Timber from forests is essential for construction, furniture, etc.</li>
+                        <li><strong>Habitat for Wild Animals:</strong> Supports biodiversity and tourism.</li>
+                        <li><strong>Aesthetic Value:</strong> Beauty for recreation and tourism.</li>
+                        <li><strong>Fodder/Food:</strong> For livestock and humans (fruits, nuts, vegetables).</li>
+                        <li><strong>Control of Soil Erosion:</strong> Plant roots bind soil, and cover protects from wind/water erosion.</li>
+                        <li><strong>Influence on Rainfall Formation:</strong> Transpiration contributes to atmospheric moisture.</li>
+                        <li><strong>Raw Materials for Industries:</strong> Pulp for paper, resins, gums, fibers.</li>
+                        <li><strong>Protection of Water Catchments:</strong> Forests help regulate water flow and quality.</li>
+                        <li><strong>Purification of Air:</strong> Plants absorb CO2 and release oxygen.</li>
+                        <li><strong>Source of Wood Fuel:</strong> Essential energy source for many communities.</li>
+                        <li><strong>Source of Gums, Resins, Wax, Cork, Tannin.</strong></li>
+                        <li><strong>Fibers Production:</strong> For textiles, ropes, etc.</li>
+                        <li><strong>Scientific Research:</strong> Studying plant genetics, ecology, and potential uses.</li>
+                        <li><strong>Bee Keeping/Honey Production.</strong></li>
+                        <li><strong>Preservation of Cultural Heritage.</strong></li>
+                        <li><strong>Employment Opportunities:</strong> In forestry, agriculture, tourism, research.</li>
+                    </ul>
+                    <p><em>Note: The PDF mentions pumice as a scrubbing stone under vegetation significance, but clarifies it's a volcanic rock. This point is usually associated with geology rather than vegetation directly.</em></p>
+                `
+            },
+            {
+                id: 'forestry_problems_kenya',
+                title: 'Problems Facing Forestry in Kenya',
+                content: `
+                    <h2>Problems Facing Forestry in Kenya</h2>
+                    <p>Despite the importance of forests, Kenya faces several challenges in managing its forest resources:</p>
+                    <ul>
+                        <li><strong>Encroachment due to Population Pressure:</strong> Clearing forests for settlement, agriculture, and other land uses.</li>
+                        <li><strong>Pests and Diseases:</strong> Affecting tree health and productivity (e.g., Aphids on cypress).</li>
+                        <li><strong>Forest Fires:</strong> Both natural and human-caused, destroying large areas of forest.</li>
+                        <li><strong>Game Damage:</strong> Wildlife can damage young trees and regeneration.</li>
+                        <li><strong>Over-exploitation:</strong> Illegal logging and unsustainable harvesting of forest products.</li>
+                        <li><strong>Excisions:</strong> Degazettement of forest land for other uses.</li>
+                        <li><strong>Poor Management Practices:</strong> Inadequate resources, weak enforcement of laws, and sometimes corruption can hinder effective forest management.</li>
+                    </ul>
+                    <img src="https://placehold.co/600x400/E2E8F0/4A5568?text=Photo:+Deforestation+Impact" alt="Placeholder for Deforestation Impact" class="diagram-placeholder">
+                    <p class="caption">Image showing the impact of deforestation or a forest fire.</p>
+                `
+            }
+        ];
+
+        // --- Functions ---
+        function displayContent(topicId) {
+            const topic = vegetationTopics.find(t => t.id === topicId);
+            if (topic) {
+                contentArea.innerHTML = topic.content;
+                topicTitle.textContent = topic.title;
+
+                document.querySelectorAll('.sidebar-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.topic === topicId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.style.display = 'none';
+                }
+                contentArea.scrollTop = 0; // Scroll to top of content
+            } else {
+                contentArea.innerHTML = '<p>Topic not found. Please select a valid topic.</p>';
+                topicTitle.textContent = 'Error';
+            }
+        }
+
+        function populateNavigation() {
+            const navFragment = document.createDocumentFragment();
+            vegetationTopics.forEach(topic => {
+                const link = document.createElement('a');
+                link.href = '#';
+                link.textContent = topic.title;
+                link.classList.add('block', 'py-2.5', 'px-4', 'rounded', 'transition', 'duration-200', 'hover:bg-gray-700', 'sidebar-link', 'text-sm');
+                link.dataset.topic = topic.id;
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    displayContent(topic.id);
+                });
+                navFragment.appendChild(link);
+            });
+            topicNavigation.appendChild(navFragment);
+        }
+
+        // --- Event Listeners ---
+        mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.style.display = 'none';
+        });
+
+        // --- Initialization ---
+        populateNavigation();
+        if (vegetationTopics.length > 0) {
+            const initialTopicId = vegetationTopics.find(t => t.id === 'introduction_vegetation') ? 'introduction_vegetation' : vegetationTopics[0].id;
+            displayContent(initialTopicId);
+        }
+
+    </script>
+</body>
+</html>
