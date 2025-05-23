@@ -9,13 +9,12 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0fdfa; /* Tailwind teal-50, for a new feel */
+            background-color: #f0f9ff; /* Tailwind sky-50, for a new feel */
         }
         .content-card {
             background-color: white;
             border-radius: 0.75rem; 
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease-in-out;
         }
         .nav-button {
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -24,35 +23,35 @@
             transform: translateY(-2px);
         }
         .nav-button:disabled {
-            background-color: #ccfbf1; /* Lighter teal for disabled */
+            background-color: #bae6fd; /* Tailwind sky-200 */
             cursor: not-allowed;
             opacity: 0.7;
         }
         .diagram-placeholder {
-            border: 2px dashed #5eead4; /* Tailwind teal-300 */
+            border: 2px dashed #38bdf8; /* Tailwind sky-400 */
             padding: 2rem;
             margin: 1.5rem 0;
             text-align: center;
-            background-color: #f0fdfa; /* Tailwind teal-50 */
+            background-color: #f0f9ff; /* Tailwind sky-50 */
             border-radius: 0.5rem;
-            color: #14b8a6; /* Tailwind teal-500 */
+            color: #0ea5e9; /* Tailwind sky-500 */
             font-style: italic;
         }
         .explanation-box {
-            background-color: #ccfbf1; /* Tailwind teal-100 */
-            border-left: 4px solid #14b8a6; /* Tailwind teal-500 */
+            background-color: #e0f2fe; /* Tailwind sky-100 */
+            border-left: 4px solid #0284c7; /* Tailwind sky-600 */
             padding: 1rem;
             margin-top: 1.5rem;
             border-radius: 0.375rem;
         }
         .explanation-box h3 {
-            color: #0f766e; /* Tailwind teal-700 */
+            color: #0369a1; /* Tailwind sky-700 */
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
         .progress-bar-container {
             width: 100%;
-            background-color: #99f6e4; /* Tailwind teal-200 */
+            background-color: #e0f2fe; /* Tailwind sky-100 */
             border-radius: 0.25rem;
             overflow: hidden;
             height: 10px;
@@ -60,28 +59,28 @@
         }
         .progress-bar {
             height: 100%;
-            background-color: #0d9488; /* Tailwind teal-600 */
+            background-color: #0ea5e9; /* Tailwind sky-500 */
             transition: width 0.3s ease-in-out;
         }
         h1.main-header { 
-             color: #134e4a; /* Tailwind teal-800 */
+             color: #0c4a6e; /* Tailwind sky-800 */
         }
         h2 { /* Main topic titles in content card */
             font-size: 1.75rem; 
             font-weight: 700; 
-            color: #0f766e; /* Tailwind teal-700 */
+            color: #075985; /* Tailwind sky-700 */
             margin-bottom: 0.75rem;
         }
         h3 { /* Sub-headings within content */
             font-size: 1.25rem; 
             font-weight: 600; 
-            color: #14b8a6; /* Tailwind teal-500 */
+            color: #0ea5e9; /* Tailwind sky-500 */
             margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
         p, li {
             line-height: 1.6;
-            color: #115e59; /* Tailwind teal-700 for contrast */
+            color: #082f49; /* Tailwind sky-900 */
         }
         ul {
             list-style-type: disc;
@@ -97,7 +96,7 @@
             margin-bottom: 1.5rem;
         }
         .dropdown-button {
-            background-color: #0f766e; /* Tailwind teal-700 */
+            background-color: #0369a1; /* Tailwind sky-700 */
             color: white;
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
@@ -112,7 +111,7 @@
             align-items: center;
         }
         .dropdown-button:hover {
-            background-color: #134e4a; /* Tailwind teal-800 */
+            background-color: #075985; /* Tailwind sky-800 */
         }
         .dropdown-content {
             display: none;
@@ -138,11 +137,11 @@
         }
         .dropdown-content a:hover {
             background-color: #f1f1f1;
+            color: black; /* Ensure text color is black on hover */
         }
         .dropdown-content a.active-topic {
-            background-color: #0d9488; /* Tailwind teal-600 */
-            color: white;
-            font-weight: 600;
+            /* Tailwind classes bg-blue-500 and text-white are added by JS */
+            font-weight: 600; /* Keep font weight for active */
         }
         .show-dropdown {
             display: block;
@@ -169,13 +168,19 @@
 
     <div class="w-full max-w-3xl">
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold main-header">Guided Learning: Understanding Waves</h1>
-            <p class="text-gray-600 mt-2">Exploring the nature and properties of waves.</p>
+            <h1 class="text-4xl font-bold main-header">Guided Learning: Waves</h1>
+            <p class="text-sm text-gray-500 mt-1">Exploring the nature and properties of waves.</p>
+            <p class="text-gray-500 mt-1">KCSE Form 2 Physics - Kenyan Curriculum</p>
         </header>
+
+        <!-- NEW LINK INSERTED HERE -->
+        <div class="mb-4 text-center">
+            <a href="physics_dashboard.html" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold">&larr; Back to Physics Dashboard</a>
+        </div>
 
         <div class="dropdown mb-6">
             <button id="topic-menu-button" class="dropdown-button">
-                <span>Select a Topic</span>
+                <span>Select Physics Topic</span> <!-- Default text, JS will update -->
                 <i id="menu-arrow" class="arrow down"></i>
             </button>
             <div id="topic-menu-content" class="dropdown-content">
@@ -189,7 +194,7 @@
 
 
         <div id="content-area" class="content-card p-6 md:p-8">
-            <h2 id="topic-title" class="text-2xl font-bold text-teal-700 mb-4">Topic Title</h2>
+            <h2 id="topic-title" class="text-2xl font-bold text-sky-700 mb-4">Topic Title</h2>
             <div id="topic-content" class="prose max-w-none">
                 </div>
             <div id="diagram-area">
@@ -201,120 +206,58 @@
         </div>
 
         <div id="navigation" class="mt-8 flex justify-between items-center">
-            <button id="prev-button" class="nav-button bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75">
+            <button id="prev-button" class="nav-button bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75">
                 Previous
             </button>
             <button id="next-button" class="nav-button bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75">
                 Next
             </button>
         </div>
-         <p class="text-center text-xs text-gray-500 mt-8">Think about examples of waves you see and hear every day!</p>
+         <p class="text-center text-xs text-gray-500 mt-8">Consider real-world examples of wave phenomena!</p>
     </div>
 
     <script>
-        const topics = [
+        const interTopicNavigationLinks = [
+            { title: "Magnetism", href: "magnetism.html" },
+            { title: "Measurement (II)", href: "measurment_2.html" },
+            { title: "Turning Effect of a Force", href: "turning_effect_of_a_force.html" },
+            { title: "Equilibrium and Centre of Gravity", href: "equillibrium_and_center_of_gravity.html" },
+            { title: "Reflection of Curved Surfaces", href: "reflection_at_curved_surfaces.html" },
+            { title: "Magnetic Effect of an Electric Current", href: "magnetic_effect_of_an_electric_current.html" },
+            { title: "Hooke’s Law", href: "hookes_law.html" },
+            { title: "Waves", href: "waves.html" },
+            { title: "Sound I", href: "sound_1.html" },
+            { title: "Fluid Flow", href: "fluid_flow.html" }
+        ];
+
+        const topics = [ // Placeholder for Waves sub-topics
             {
-                title: "What is a Wave?",
-                content: `
-                    <p>A wave is fundamentally the <strong>transmission of a disturbance</strong>. This disturbance propagates outwards from its point of origin, effectively transferring <strong>energy</strong> without causing a net movement of the medium itself from one location to another.</p>
-                    <p>Waves play a significant role in various aspects of daily life, including radio and television transmission, mobile communication, remote control systems, and the transfer of heat energy via radiation.</p>
-                `,
-                explanation: "Imagine dropping a pebble in a pond. The ripples that spread out are waves! A wave is basically a way energy travels through a disturbance, without the actual stuff (like water particles) moving far from its spot.",
-                diagramPlaceholder: "[Diagram: A pebble dropped into still water, showing circular ripples (waves) spreading outwards from the point of impact.]"
+                title: "Introduction to Waves",
+                content: "<p>This section will introduce the concept of waves, distinguishing between mechanical and electromagnetic waves, and discussing the basic properties of waves such as amplitude, wavelength, frequency, period, and wave speed.</p>",
+                explanation: "Waves are disturbances that transfer energy. Think of ripples in water or sound in the air. We'll learn about different types and how to describe them.",
+                diagramPlaceholder: "[Diagram: Simple transverse wave showing crest, trough, amplitude, and wavelength. And a simple longitudinal wave showing compressions and rarefactions.]"
             },
             {
-                title: "Classification of Waves: Electromagnetic vs. Mechanical",
+                title: "Types of Waves",
+                content: "<p>Detailed discussion on transverse waves (e.g., light, ripples on water) and longitudinal waves (e.g., sound). Examples and characteristics of each will be explored.</p>",
+                explanation: "Waves can wiggle side-to-side (transverse, like light) or push-and-pull (longitudinal, like sound).",
+                diagramPlaceholder: "[Diagram: Clear illustrations of a transverse wave and a longitudinal wave, highlighting particle motion relative to wave direction.]"
+            },
+            {
+                title: "Wave Properties",
                 content: `
-                    <p>Waves can be broadly categorized based on whether they require a medium for transmission:</p>
+                    <p>Key properties and their relationships:</p>
                     <ul>
-                        <li><strong>Electromagnetic Waves:</strong> These waves <strong>do not need a material medium</strong> to travel. Examples include radio waves, radiant heat, light, and microwaves.</li>
-                        <li><strong>Mechanical Waves:</strong> These waves <strong>require a material medium</strong> through which to propagate. Their transmission occurs due to the vibration of the particles within that medium. Examples include water waves and sound waves.</li>
+                        <li><strong>Amplitude (A):</strong> Maximum displacement from the rest position.</li>
+                        <li><strong>Wavelength (λ):</strong> Distance between two successive identical points on a wave (e.g., crest to crest).</li>
+                        <li><strong>Frequency (f):</strong> Number of complete waves passing a point per second (Hertz, Hz).</li>
+                        <li><strong>Period (T):</strong> Time taken for one complete wave to pass a point (T = 1/f).</li>
+                        <li><strong>Wave Speed (v):</strong> How fast the wave travels (v = fλ).</li>
                     </ul>
                 `,
-                explanation: "There are two main wave families: 'Electromagnetic' waves (like light or radio waves) are special because they can travel through empty space (like from the Sun to Earth). 'Mechanical' waves (like sound or water waves) need some 'stuff' (a medium like air or water) to travel through.",
-                diagramPlaceholder: "[Diagram: Side-by-side comparison. Left: Sun emitting light waves traveling through space to Earth (Electromagnetic). Right: A person speaking, with sound waves traveling through air particles (Mechanical).]"
-            },
-            {
-                title: "Types of Mechanical Waves: Transverse Waves",
-                content: `
-                    <p>Mechanical waves can be further subdivided into two types based on the direction of particle vibration relative to the wave's direction of travel.</p>
-                    <h3>Transverse Waves:</h3>
-                    <p>In a transverse wave, the <strong>vibration of the particles in the medium occurs at right angles (perpendicular)</strong> to the direction in which the wave is traveling.</p>
-                    <p><strong>Examples:</strong> Water waves, waves moving along a stretched string or rope, and all electromagnetic waves (such as light, radio waves, and microwaves) are examples of transverse waves.</p>
-                    <p><strong>Illustration:</strong> One way to visualize a transverse wave is by moving one end of a slinky spring or rope, which is stretched along a smooth surface and fixed at the other end, up and down at right angles to the spring or rope.</p>
-                    <p><strong>Form:</strong> Transverse waves propagate as a series of <strong>crests</strong> (points of maximum upward displacement) and <strong>troughs</strong> (points of maximum downward displacement). In the context of water waves, a toy boat placed in the path of the ripples will bob up and down but will not be moved towards the edge of the pond.</p>
-                `,
-                explanation: "In 'Transverse' waves, the particles jiggle up and down (or side to side) while the wave itself moves forward. Think of doing 'the wave' in a stadium – people move up and down, but the wave travels around. Water waves and light waves are like this. They have high points (crests) and low points (troughs).",
-                diagramPlaceholder: "[Diagram: A stretched rope or slinky spring. Show one end being moved up and down, creating a wave pattern with clearly labeled crests and troughs moving along the rope. Indicate particle motion (up/down) and wave direction (sideways) with arrows.]"
-            },
-            {
-                title: "Types of Mechanical Waves: Longitudinal Waves",
-                content: `
-                    <h3>Longitudinal Waves:</h3>
-                    <p>In a longitudinal wave, the <strong>vibration of the particles in the medium is in a direction parallel</strong> to the direction of the wave's travel.</p>
-                    <p><strong>Examples:</strong> Sound waves are the primary example of longitudinal waves.</p>
-                    <p><strong>Illustration:</strong> Longitudinal waves can be demonstrated by vibrating one end of a slinky spring, fixed at the other end, with a back-and-forth motion along its length.</p>
-                    <p><strong>Form:</strong> This to-and-fro movement creates regions where the particles are pushed closer together, called <strong>compressions</strong>, alternating with regions where the particles are pulled farther apart, called <strong>rarefactions</strong>, along the length of the spring.</p>
-                    <p><strong>Particle Spacing and Pressure:</strong> Longitudinal wave motion affects the spacing between particles; they are closer in compressions and farther apart in rarefactions. This variation in spacing is associated with a variation in pressure (higher in compressions, lower in rarefactions).</p>
-                `,
-                explanation: "In 'Longitudinal' waves, the particles jiggle back and forth in the SAME direction the wave is traveling. Think of pushing and pulling a slinky. Sound waves are like this. They have squished-up parts (compressions) and stretched-out parts (rarefactions).",
-                diagramPlaceholder: "[Diagram: A slinky spring. Show one end being pushed and pulled, creating regions of compressions (coils close together) and rarefactions (coils spread apart) moving along the spring. Indicate particle motion (back/forth) and wave direction (sideways) with arrows.]"
-            },
-            {
-                title: "Progressive Waves, Pulses, and Wave Trains",
-                content: `
-                    <h3>Progressive Waves:</h3>
-                    <p>These are waves that <strong>continuously move away from their source</strong>. Both transverse and longitudinal waves can be progressive. As a progressive wave spreads out from its source, the energy it carries is distributed over an increasingly large area, which leads to a gradual decrease in the wave's <strong>amplitude</strong>.</p>
-                    <h3>Pulses:</h3>
-                    <p>A pulse is generated when a <strong>single vibration</strong> is introduced into a medium. Like progressive waves, pulses can be either transverse or longitudinal.</p>
-                    <h3>Wave Trains:</h3>
-                    <p>Wave trains are produced by <strong>continuous vibrations occurring at a steady rate</strong> within a medium. This results in a repeating pattern (crests/troughs or compressions/rarefactions).</p>
-                `,
-                explanation: "'Progressive waves' just keep on traveling away from where they started. A 'pulse' is like a single 'blip' or a single wave (like one flick of a rope). A 'wave train' is a whole series of these waves following each other, like continuous ripples.",
-                diagramPlaceholder: "[Diagram: 1. A single pulse traveling along a rope. 2. A continuous wave train (multiple crests and troughs) traveling along a rope.]"
-            },
-            {
-                title: "Characteristics of Wave Motion: Amplitude & Frequency",
-                content: `
-                    <p>Understanding wave motion involves several key terms:</p>
-                    <p><strong>Amplitude (A):</strong> The <strong>maximum displacement</strong> of a particle or point in the medium from its mean (equilibrium) position on either side. Its SI unit is the <strong>metre (m)</strong>. In a transverse wave, it is the height of a crest or the depth of a trough relative to the equilibrium line.</p>
-                    <p><strong>Frequency (f):</strong> The <strong>number of complete oscillations or cycles</strong> made by a vibrating particle or wave source in one second. The frequency of a wave is determined by the rate at which its source vibrates. The standard unit of frequency is the <strong>hertz (Hz)</strong> (cycles per second).</p>
-                `,
-                explanation: "'Amplitude' is how big the wave is – for water waves, it's how high the crest is from the calm water level. 'Frequency' is how many full waves pass by a point every second. We measure frequency in Hertz (Hz).",
-                diagramPlaceholder: "[Diagram: A transverse wave. Clearly label the Amplitude (A) from the equilibrium line to a crest and also to a trough. Show multiple waves passing a point to illustrate frequency conceptually.]"
-            },
-            {
-                title: "Characteristics of Wave Motion: Period & Wavelength",
-                content: `
-                    <p><strong>Period (T):</strong> The <strong>time taken</strong> for a vibrating particle or wave to complete one full oscillation or cycle. The SI unit of period is the <strong>second (s)</strong>. Frequency and period are inversely related: <strong>f = 1/T</strong> and <strong>T = 1/f</strong>.</p>
-                    <p><strong>Wavelength (λ):</strong> The <strong>distance between two points on a wave train that are in phase</strong>. More specifically, it is the distance between two consecutive crests or troughs in a transverse wave, or the distance between two consecutive compressions or rarefactions in a longitudinal wave. The SI unit for wavelength is the <strong>metre (m)</strong>.</p>
-                `,
-                explanation: "'Period' is the time it takes for one complete wave to pass by. It's the flip side of frequency (T = 1/f). 'Wavelength' (shown by the Greek letter lambda, λ) is the distance from one crest to the next crest, or one trough to the next trough (or one compression to the next compression).",
-                diagramPlaceholder: "[Diagram: A transverse wave. Clearly label the Wavelength (λ) as the distance between two consecutive crests. Also, show one complete cycle and label its duration as the Period (T). For a longitudinal wave, show λ as the distance between two consecutive compressions.]"
-            },
-            {
-                title: "Characteristics of Wave Motion: Speed & Phase",
-                content: `
-                    <p><strong>Speed (v):</strong> The <strong>distance covered by a wave in one second</strong> as it travels through the medium. Its SI unit is <strong>metres per second (m/s)</strong>. For a given medium, the speed of a wave is generally considered constant.</p>
-                    <h3>Phase and Phase Difference:</h3>
-                    <p>Particles undergoing wave motion that are vibrating in the same direction and have the same instantaneous displacement from equilibrium are described as being <strong>in phase</strong>. Their displacement-time graphs would be identical. When particles are not in phase, they are described as being <strong>out of phase</strong>. For example, if one particle is at its maximum positive displacement while another is at its maximum negative displacement, they are 180° out of phase.</p>
-                `,
-                explanation: "'Wave speed' is simply how fast the wave is traveling. 'In phase' means two points on a wave are doing exactly the same thing at the same time (e.g., both at the top of a crest). 'Out of phase' means they are doing different things (e.g., one is at a crest, another is at a trough).",
-                diagramPlaceholder: "[Diagram: Two points on a transverse wave that are in phase (e.g., two adjacent crests, or two points one wavelength apart starting at equilibrium and moving upwards). Show two other points that are 180° out of phase (e.g., a crest and an adjacent trough).]"
-            },
-            {
-                title: "Relationship: Speed, Wavelength, and Frequency",
-                content: `
-                    <p>The speed (v) of a wave, its frequency (f), and its wavelength (λ) are related by a fundamental equation: <strong>v = fλ</strong></p>
-                    <p>This equation indicates that the velocity of a wave is equal to the product of its frequency and wavelength. Since the speed of a wave is typically constant within a specific medium, this relationship shows that if the frequency increases, the wavelength must decrease proportionally, and vice versa.</p>
-                    <p><strong>Example 1:</strong> Waves on a spring: 20 wavelengths pass in 5s (f = 4 Hz). λ = 0.01 m. Speed v = fλ = 4 Hz × 0.01 m = 0.04 m/s. Period T = 1/f = 0.25 s.</p>
-                    <p><strong>Example 2:</strong> Water wave travels 12 m in 4 s (v = 3 m/s). f = 2 Hz. Wavelength λ = v/f = 3 m/s / 2 Hz = 1.5 m.</p>
-                    <p><strong>Example 3:</strong> Wave on a string: v = 10.0 m/s, λ = 40 cm (0.4 m). Frequency f = v/λ = 10.0 m/s / 0.4 m = 25 Hz. Period T = 1/f = 0.04 s.</p>
-                `,
-                explanation: "There's a super important formula connecting wave speed (v), frequency (f), and wavelength (λ):  v = f × λ.  This means if you know any two, you can find the third! If the speed in a material stays the same, then if frequency goes up, wavelength must go down, and vice-versa.",
-                diagramPlaceholder: "[Diagram: A visual representation of the formula v = fλ. Perhaps show a wave train, label v, f, and λ, and connect them with the formula clearly displayed.]"
+                explanation: "We describe waves using terms like: Amplitude (how big), Wavelength (how long), Frequency (how often), Period (how much time for one), and Speed (how fast).",
+                diagramPlaceholder: "[Diagram: A transverse wave clearly labeled with Amplitude and Wavelength. Include formulas v=fλ and T=1/f.]"
             }
-            // Revision questions are not included as interactive steps.
         ];
 
         let currentTopicIndex = 0;
@@ -335,7 +278,7 @@
 
         function displayTopic(index) {
             currentTopicIndex = index; 
-            const topic = topics[index];
+            const topic = topics[index]; 
             topicTitleElement.textContent = topic.title;
             topicContentElement.innerHTML = topic.content; 
 
@@ -357,49 +300,49 @@
 
             updateNavigationButtons();
             updateProgressBar();
-            updateActiveMenuItem(); 
-            topicMenuButton.firstChild.textContent = topic.title; 
         }
 
         function updateNavigationButtons() {
             prevButton.disabled = currentTopicIndex === 0;
-            nextButton.disabled = currentTopicIndex === topics.length - 1;
+            nextButton.disabled = currentTopicIndex >= topics.length - 1; // Corrected for last topic
         }
 
         function updateProgressBar() {
-            const progressPercentage = ((currentTopicIndex + 1) / topics.length) * 100;
-            progressBar.style.width = `${progressPercentage}%`;
-            progressText.textContent = `Topic ${currentTopicIndex + 1} of ${topics.length}`;
+            if (topics.length > 0) { // Ensure topics array is not empty
+                 const progressPercentage = ((currentTopicIndex + 1) / topics.length) * 100;
+                 progressBar.style.width = `${progressPercentage}%`;
+                 progressText.textContent = `Topic ${currentTopicIndex + 1} of ${topics.length}`;
+            } else { // Handle empty topics array if necessary
+                 progressBar.style.width = `0%`;
+                 progressText.textContent = `Topic 0 of 0`;
+            }
         }
+        
+        function populateInterTopicMenu() {
+            const menuContent = document.getElementById('topic-menu-content');
+            const menuButton = document.getElementById('topic-menu-button');
+            menuContent.innerHTML = ''; 
 
-        function populateTopicMenu() {
-            topicMenuContent.innerHTML = ''; 
-            topics.forEach((topic, index) => {
+            interTopicNavigationLinks.forEach(topicLink => {
                 const menuItem = document.createElement('a');
-                menuItem.href = "#";
-                menuItem.textContent = topic.title;
-                menuItem.dataset.index = index;
-                menuItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const selectedIndex = parseInt(e.target.dataset.index);
-                    displayTopic(selectedIndex);
-                    topicMenuContent.classList.remove('show-dropdown'); 
-                    menuArrow.classList.remove('up');
-                    menuArrow.classList.add('down');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                topicMenuContent.appendChild(menuItem);
-            });
-        }
-
-        function updateActiveMenuItem() {
-            const menuItems = topicMenuContent.querySelectorAll('a');
-            menuItems.forEach(item => {
-                if (parseInt(item.dataset.index) === currentTopicIndex) {
-                    item.classList.add('active-topic');
+                menuItem.href = topicLink.href;
+                menuItem.textContent = topicLink.title;
+                menuItem.classList.add('block', 'px-4', 'py-3', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:text-gray-900');
+                
+                const currentPageFilename = window.location.pathname.split('/').pop();
+                if (currentPageFilename === topicLink.href || 
+                    ( (currentPageFilename === '' || currentPageFilename === 'index.html') && topicLink.href === 'waves.html') ) { 
+                    menuItem.classList.add('active-topic', 'bg-blue-500', 'text-white');
+                    const spanElement = Array.from(menuButton.childNodes).find(node => node.nodeName === 'SPAN');
+                    if (spanElement) {
+                        spanElement.textContent = topicLink.title;
+                    } else if (menuButton.firstChild && menuButton.firstChild.nodeType === Node.TEXT_NODE) { 
+                         menuButton.firstChild.textContent = topicLink.title;
+                    }
                 } else {
-                    item.classList.remove('active-topic');
+                     menuItem.classList.remove('active-topic', 'bg-blue-500', 'text-white');
                 }
+                menuContent.appendChild(menuItem);
             });
         }
 
@@ -433,8 +376,9 @@
             }
         });
 
-        populateTopicMenu();
-        displayTopic(currentTopicIndex);
+        // Initial setup
+        populateInterTopicMenu(); 
+        displayTopic(currentTopicIndex); 
     </script>
 
 </body>
