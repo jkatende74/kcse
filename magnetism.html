@@ -17,10 +17,6 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             transition: all 0.3s ease-in-out;
         }
-        /* Removed hover effect to prevent card jumping when menu is open over it */
-        /* .content-card:hover {
-            transform: translateY(-5px);
-        } */
         .nav-button {
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
@@ -127,7 +123,7 @@
             overflow-y: auto;
         }
         .dropdown-content a {
-            color: black;
+            color: black; /* Default color for dropdown items */
             padding: 12px 16px;
             text-decoration: none;
             display: block;
@@ -139,11 +135,13 @@
         }
         .dropdown-content a:hover {
             background-color: #f1f1f1;
+            color: black; /* Ensure hover text color is black */
         }
         .dropdown-content a.active-topic {
-            background-color: #3b82f6; /* Tailwind blue-500 */
-            color: white;
-            font-weight: 600;
+            /* Styles for active topic are now primarily handled by JS adding Tailwind classes */
+            /* background-color: #3b82f6 !important; */ /* Tailwind blue-500, ensure it overrides */
+            /* color: white !important; */ /* Ensure text color is white for active */
+            font-weight: 600; /* Keep font weight for active */
         }
         .show-dropdown {
             display: block;
@@ -172,12 +170,18 @@
     <div class="w-full max-w-3xl">
         <header class="text-center mb-8">
             <h1 class="text-4xl font-bold text-gray-800">Understanding Magnetism</h1>
-            <p class="text-gray-600 mt-2">A step-by-step guide through your KCSE revision notes.</p>
+            <p class="text-sm text-gray-500 mt-1">A step-by-step guide through your KCSE revision notes.</p>
+            <p class="text-gray-500 mt-1">KCSE Form 2 Physics - Kenyan Curriculum</p>
         </header>
+
+        <!-- NEW LINK INSERTED HERE -->
+        <div class="mb-4 text-center">
+            <a href="physics_dashboard.html" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold">&larr; Back to Physics Dashboard</a>
+        </div>
 
         <div class="dropdown mb-6">
             <button id="topic-menu-button" class="dropdown-button">
-                <span>Select a Topic</span>
+                <span>Select Physics Topic</span>
                 <i id="menu-arrow" class="arrow down"></i>
             </button>
             <div id="topic-menu-content" class="dropdown-content">
@@ -214,6 +218,19 @@
     </div>
 
     <script>
+        const interTopicNavigationLinks = [
+            { title: "Magnetism", href: "magnetism.html" },
+            { title: "Measurement (II)", href: "measurment_2.html" },
+            { title: "Turning Effect of a Force", href: "turning_effect_of_a_force.html" },
+            { title: "Equilibrium and Centre of Gravity", href: "equillibrium_and_center_of_gravity.html" },
+            { title: "Reflection of Curved Surfaces", href: "reflection_at_curved_surfaces.html" },
+            { title: "Magnetic Effect of an Electric Current", href: "magnetic_effect_of_an_electric_current.html" },
+            { title: "Hooke’s Law", href: "hookes_law.html" },
+            { title: "Waves", href: "waves.html" },
+            { title: "Sound I", href: "sound_1.html" },
+            { title: "Fluid Flow", href: "fluid_flow.html" }
+        ];
+
         const topics = [
             // Section 1: Introduction to Magnetism
             {
@@ -513,7 +530,7 @@
 
 
         function displayTopic(index) {
-            currentTopicIndex = index; // Ensure currentTopicIndex is updated
+            currentTopicIndex = index; 
             const topic = topics[index];
             topicTitleElement.textContent = topic.title;
             topicContentElement.innerHTML = topic.content; 
@@ -536,9 +553,7 @@
 
             updateNavigationButtons();
             updateProgressBar();
-            updateActiveMenuItem(); // Highlight active menu item
-            // Update dropdown button text to current topic
-            topicMenuButton.firstChild.textContent = topic.title;
+            updateActiveMenuItem(); 
         }
 
         function updateNavigationButtons() {
@@ -551,34 +566,51 @@
             progressBar.style.width = `${progressPercentage}%`;
             progressText.textContent = `Topic ${currentTopicIndex + 1} of ${topics.length}`;
         }
-
+        
+        // Original function for sub-topic dropdowns (if any). Not used for the main inter-topic menu.
         function populateTopicMenu() {
-            topicMenuContent.innerHTML = ''; // Clear existing items
-            topics.forEach((topic, index) => {
+            // This function would be used if sub-topics were listed in a dropdown.
+            // For the current Magnetism page, sub-topics are navigated via Next/Prev.
+        }
+        
+        function populateInterTopicMenu() {
+            const menuContent = document.getElementById('topic-menu-content');
+            const menuButton = document.getElementById('topic-menu-button');
+            menuContent.innerHTML = ''; 
+
+            interTopicNavigationLinks.forEach(topicLink => {
                 const menuItem = document.createElement('a');
-                menuItem.href = "#";
-                menuItem.textContent = topic.title;
-                menuItem.dataset.index = index;
-                menuItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const selectedIndex = parseInt(e.target.dataset.index);
-                    displayTopic(selectedIndex);
-                    topicMenuContent.classList.remove('show-dropdown'); // Hide menu after selection
-                    menuArrow.classList.remove('up');
-                    menuArrow.classList.add('down');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                topicMenuContent.appendChild(menuItem);
+                menuItem.href = topicLink.href;
+                menuItem.textContent = topicLink.title;
+                menuItem.classList.add('block', 'px-4', 'py-3', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:text-gray-900');
+                
+                const currentPageFilename = window.location.pathname.split('/').pop();
+                // Handle index.html or root path for magnetism.html specifically
+                if (currentPageFilename === topicLink.href || ( (currentPageFilename === '' || currentPageFilename === 'index.html') && topicLink.href === 'magnetism.html') ) {
+                    menuItem.classList.add('active-topic', 'bg-blue-500', 'text-white');
+                     // Ensure the button text is updated correctly by targeting the span
+                    const spanElement = Array.from(menuButton.childNodes).find(node => node.nodeName === 'SPAN');
+                    if (spanElement) {
+                        spanElement.textContent = topicLink.title;
+                    } else if (menuButton.firstChild.nodeName === '#text') { // Fallback for direct text node
+                        menuButton.firstChild.textContent = topicLink.title;
+                    }
+                } else {
+                     menuItem.classList.remove('active-topic', 'bg-blue-500', 'text-white');
+                }
+                menuContent.appendChild(menuItem);
             });
         }
 
         function updateActiveMenuItem() {
-            const menuItems = topicMenuContent.querySelectorAll('a');
-            menuItems.forEach(item => {
+            // This function is for sub-topic navigation systems (if a dropdown for sub-topics was used).
+            // It doesn't affect the main inter-topic menu's active state, which is handled by populateInterTopicMenu.
+            const subTopicMenuItems = document.querySelectorAll('#some-other-subtopic-menu a'); 
+            subTopicMenuItems.forEach(item => {
                 if (parseInt(item.dataset.index) === currentTopicIndex) {
-                    item.classList.add('active-topic');
+                    item.classList.add('active-topic', 'bg-blue-500', 'text-white');
                 } else {
-                    item.classList.remove('active-topic');
+                    item.classList.remove('active-topic', 'bg-blue-500', 'text-white');
                 }
             });
         }
@@ -589,7 +621,6 @@
             menuArrow.classList.toggle('down');
         });
 
-        // Close dropdown if clicked outside
         window.addEventListener('click', function(event) {
             if (!topicMenuButton.contains(event.target) && !topicMenuContent.contains(event.target)) {
                 if (topicMenuContent.classList.contains('show-dropdown')) {
@@ -602,7 +633,6 @@
 
         prevButton.addEventListener('click', () => {
             if (currentTopicIndex > 0) {
-                // currentTopicIndex--; // displayTopic will set this
                 displayTopic(currentTopicIndex - 1);
                  window.scrollTo({ top: 0, behavior: 'smooth' });
             }
@@ -610,15 +640,14 @@
 
         nextButton.addEventListener('click', () => {
             if (currentTopicIndex < topics.length - 1) {
-                // currentTopicIndex++; // displayTopic will set this
                 displayTopic(currentTopicIndex + 1);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
 
         // Initial setup
-        populateTopicMenu();
-        displayTopic(currentTopicIndex);
+        populateInterTopicMenu(); 
+        displayTopic(currentTopicIndex); 
     </script>
 
 </body>

@@ -15,7 +15,6 @@
             background-color: white;
             border-radius: 0.75rem; 
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease-in-out;
         }
         .nav-button {
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -139,11 +138,11 @@
         }
         .dropdown-content a:hover {
             background-color: #f1f1f1;
+            color: black; /* Ensure text color is black on hover */
         }
         .dropdown-content a.active-topic {
-            background-color: #14b8a6; /* Tailwind teal-500 */
-            color: white;
-            font-weight: 600;
+            /* Tailwind classes bg-blue-500 and text-white are added by JS */
+            font-weight: 600; /* Keep font weight for active */
         }
         .show-dropdown {
             display: block;
@@ -170,12 +169,18 @@
     <div class="w-full max-w-3xl">
         <header class="text-center mb-8">
             <h1 class="text-4xl font-bold main-header">Guided Learning: Fluid Flow</h1>
-            <p class="text-gray-600 mt-2">Understanding how liquids and gases move.</p>
+            <p class="text-sm text-gray-500 mt-1">Understanding how liquids and gases move.</p>
+            <p class="text-gray-500 mt-1">KCSE Form 2 Physics - Kenyan Curriculum</p>
         </header>
+
+        <!-- NEW LINK INSERTED HERE -->
+        <div class="mb-4 text-center">
+            <a href="physics_dashboard.html" class="text-blue-600 hover:text-blue-800 hover:underline font-semibold">&larr; Back to Physics Dashboard</a>
+        </div>
 
         <div class="dropdown mb-6">
             <button id="topic-menu-button" class="dropdown-button">
-                <span>Select a Topic</span>
+                <span>Select Physics Topic</span> <!-- Default text, JS will update -->
                 <i id="menu-arrow" class="arrow down"></i>
             </button>
             <div id="topic-menu-content" class="dropdown-content">
@@ -211,7 +216,20 @@
     </div>
 
     <script>
-        const topics = [
+        const interTopicNavigationLinks = [
+            { title: "Magnetism", href: "magnetism.html" },
+            { title: "Measurement (II)", href: "measurment_2.html" },
+            { title: "Turning Effect of a Force", href: "turning_effect_of_a_force.html" },
+            { title: "Equilibrium and Centre of Gravity", href: "equillibrium_and_center_of_gravity.html" },
+            { title: "Reflection of Curved Surfaces", href: "reflection_at_curved_surfaces.html" },
+            { title: "Magnetic Effect of an Electric Current", href: "magnetic_effect_of_an_electric_current.html" },
+            { title: "Hooke’s Law", href: "hookes_law.html" },
+            { title: "Waves", href: "waves.html" },
+            { title: "Sound I", href: "sound_1.html" },
+            { title: "Fluid Flow", href: "fluid_flow.html" }
+        ];
+
+        const topics = [ // This is for the intra-page navigation (Fluid Flow sub-topics)
             {
                 title: "What is a Fluid?",
                 content: `
@@ -362,7 +380,6 @@
                 explanation: "Bernoulli's principle can explain some surprising things! When two trucks pass closely at high speed, the air between them moves fast, creating low pressure that can suck them together. Strong wind over a roof can lower the pressure outside so much that the higher pressure inside pushes the roof off!",
                 diagramPlaceholder: "[Diagrams: 1. Two vehicles passing closely at speed, arrows indicating fast air and lower pressure between them, higher pressure outside pushing them in. 2. A house roof in high wind, showing fast air and lower pressure above the roof, higher pressure inside pushing it up.]"
             }
-            // Revision questions are not included.
         ];
 
         let currentTopicIndex = 0;
@@ -383,7 +400,7 @@
 
         function displayTopic(index) {
             currentTopicIndex = index; 
-            const topic = topics[index];
+            const topic = topics[index]; // 'topics' is for Fluid Flow sub-topics
             topicTitleElement.textContent = topic.title;
             topicContentElement.innerHTML = topic.content; 
 
@@ -405,8 +422,8 @@
 
             updateNavigationButtons();
             updateProgressBar();
-            updateActiveMenuItem(); 
-            topicMenuButton.firstChild.textContent = topic.title; 
+            // updateActiveMenuItem(); // This was for a sub-topic dropdown, inter-topic menu handles its own active state.
+            // topicMenuButton.firstChild.textContent = topic.title; // Removed: Main button text now handled by populateInterTopicMenu
         }
 
         function updateNavigationButtons() {
@@ -419,37 +436,38 @@
             progressBar.style.width = `${progressPercentage}%`;
             progressText.textContent = `Topic ${currentTopicIndex + 1} of ${topics.length}`;
         }
+        
+        function populateInterTopicMenu() {
+            const menuContent = document.getElementById('topic-menu-content');
+            const menuButton = document.getElementById('topic-menu-button');
+            menuContent.innerHTML = ''; 
 
-        function populateTopicMenu() {
-            topicMenuContent.innerHTML = ''; 
-            topics.forEach((topic, index) => {
+            interTopicNavigationLinks.forEach(topicLink => {
                 const menuItem = document.createElement('a');
-                menuItem.href = "#";
-                menuItem.textContent = topic.title;
-                menuItem.dataset.index = index;
-                menuItem.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const selectedIndex = parseInt(e.target.dataset.index);
-                    displayTopic(selectedIndex);
-                    topicMenuContent.classList.remove('show-dropdown'); 
-                    menuArrow.classList.remove('up');
-                    menuArrow.classList.add('down');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-                topicMenuContent.appendChild(menuItem);
+                menuItem.href = topicLink.href;
+                menuItem.textContent = topicLink.title;
+                menuItem.classList.add('block', 'px-4', 'py-3', 'text-sm', 'text-gray-700', 'hover:bg-gray-100', 'hover:text-gray-900');
+                
+                const currentPageFilename = window.location.pathname.split('/').pop();
+                if (currentPageFilename === topicLink.href || 
+                    ( (currentPageFilename === '' || currentPageFilename === 'index.html') && topicLink.href === 'fluid_flow.html') ) { 
+                    menuItem.classList.add('active-topic', 'bg-blue-500', 'text-white');
+                    const spanElement = Array.from(menuButton.childNodes).find(node => node.nodeName === 'SPAN');
+                    if (spanElement) {
+                        spanElement.textContent = topicLink.title;
+                    } else if (menuButton.firstChild && menuButton.firstChild.nodeType === Node.TEXT_NODE) { // Fallback for direct text node
+                         menuButton.firstChild.textContent = topicLink.title;
+                    }
+                } else {
+                     menuItem.classList.remove('active-topic', 'bg-blue-500', 'text-white');
+                }
+                menuContent.appendChild(menuItem);
             });
         }
 
-        function updateActiveMenuItem() {
-            const menuItems = topicMenuContent.querySelectorAll('a');
-            menuItems.forEach(item => {
-                if (parseInt(item.dataset.index) === currentTopicIndex) {
-                    item.classList.add('active-topic');
-                } else {
-                    item.classList.remove('active-topic');
-                }
-            });
-        }
+        // The original populateTopicMenu and updateActiveMenuItem for sub-topics are removed 
+        // as the main dropdown is now handled by populateInterTopicMenu.
+        // If a separate dropdown for sub-topics was desired, these would be re-added and modified.
 
         topicMenuButton.addEventListener('click', () => {
             topicMenuContent.classList.toggle('show-dropdown');
@@ -481,8 +499,9 @@
             }
         });
 
-        populateTopicMenu();
-        displayTopic(currentTopicIndex);
+        // Initial setup
+        populateInterTopicMenu(); 
+        displayTopic(currentTopicIndex); 
     </script>
 
 </body>
