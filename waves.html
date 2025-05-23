@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guided Learning: Reflection at Curved Surfaces</title>
+    <title>Guided Learning: Waves</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f4f5; /* Tailwind zinc-100, for a new feel */
+            background-color: #f0fdfa; /* Tailwind teal-50, for a new feel */
         }
         .content-card {
             background-color: white;
@@ -24,35 +24,35 @@
             transform: translateY(-2px);
         }
         .nav-button:disabled {
-            background-color: #d4d4d8; /* Tailwind zinc-300 */
+            background-color: #ccfbf1; /* Lighter teal for disabled */
             cursor: not-allowed;
             opacity: 0.7;
         }
         .diagram-placeholder {
-            border: 2px dashed #71717a; /* Tailwind zinc-500 */
+            border: 2px dashed #5eead4; /* Tailwind teal-300 */
             padding: 2rem;
             margin: 1.5rem 0;
             text-align: center;
-            background-color: #fafafa; /* Tailwind zinc-50 */
+            background-color: #f0fdfa; /* Tailwind teal-50 */
             border-radius: 0.5rem;
-            color: #52525b; /* Tailwind zinc-600 */
+            color: #14b8a6; /* Tailwind teal-500 */
             font-style: italic;
         }
         .explanation-box {
-            background-color: #f0f9ff; /* Tailwind sky-50 */
-            border-left: 4px solid #0ea5e9; /* Tailwind sky-500 */
+            background-color: #ccfbf1; /* Tailwind teal-100 */
+            border-left: 4px solid #14b8a6; /* Tailwind teal-500 */
             padding: 1rem;
             margin-top: 1.5rem;
             border-radius: 0.375rem;
         }
         .explanation-box h3 {
-            color: #0c4a6e; /* Tailwind sky-800 */
+            color: #0f766e; /* Tailwind teal-700 */
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
         .progress-bar-container {
             width: 100%;
-            background-color: #e4e4e7; /* Tailwind zinc-200 */
+            background-color: #99f6e4; /* Tailwind teal-200 */
             border-radius: 0.25rem;
             overflow: hidden;
             height: 10px;
@@ -60,28 +60,28 @@
         }
         .progress-bar {
             height: 100%;
-            background-color: #0ea5e9; /* Tailwind sky-500 */
+            background-color: #0d9488; /* Tailwind teal-600 */
             transition: width 0.3s ease-in-out;
         }
         h1.main-header { 
-             color: #18181b; /* Tailwind zinc-900 */
+             color: #134e4a; /* Tailwind teal-800 */
         }
         h2 { /* Main topic titles in content card */
             font-size: 1.75rem; 
             font-weight: 700; 
-            color: #0369a1; /* Tailwind sky-700 */
+            color: #0f766e; /* Tailwind teal-700 */
             margin-bottom: 0.75rem;
         }
         h3 { /* Sub-headings within content */
             font-size: 1.25rem; 
             font-weight: 600; 
-            color: #0ea5e9; /* Tailwind sky-500 */
+            color: #14b8a6; /* Tailwind teal-500 */
             margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
         p, li {
             line-height: 1.6;
-            color: #3f3f46; /* Tailwind zinc-700 */
+            color: #115e59; /* Tailwind teal-700 for contrast */
         }
         ul {
             list-style-type: disc;
@@ -97,7 +97,7 @@
             margin-bottom: 1.5rem;
         }
         .dropdown-button {
-            background-color: #52525b; /* Tailwind zinc-600 */
+            background-color: #0f766e; /* Tailwind teal-700 */
             color: white;
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
@@ -112,7 +112,7 @@
             align-items: center;
         }
         .dropdown-button:hover {
-            background-color: #3f3f46; /* Tailwind zinc-700 */
+            background-color: #134e4a; /* Tailwind teal-800 */
         }
         .dropdown-content {
             display: none;
@@ -140,7 +140,7 @@
             background-color: #f1f1f1;
         }
         .dropdown-content a.active-topic {
-            background-color: #0ea5e9; /* Tailwind sky-500 */
+            background-color: #0d9488; /* Tailwind teal-600 */
             color: white;
             font-weight: 600;
         }
@@ -169,8 +169,8 @@
 
     <div class="w-full max-w-3xl">
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold main-header">Guided Learning: Reflection at Curved Surfaces</h1>
-            <p class="text-gray-600 mt-2">Understanding how light behaves with curved mirrors.</p>
+            <h1 class="text-4xl font-bold main-header">Guided Learning: Understanding Waves</h1>
+            <p class="text-gray-600 mt-2">Exploring the nature and properties of waves.</p>
         </header>
 
         <div class="dropdown mb-6">
@@ -189,7 +189,7 @@
 
 
         <div id="content-area" class="content-card p-6 md:p-8">
-            <h2 id="topic-title" class="text-2xl font-bold text-blue-700 mb-4">Topic Title</h2>
+            <h2 id="topic-title" class="text-2xl font-bold text-teal-700 mb-4">Topic Title</h2>
             <div id="topic-content" class="prose max-w-none">
                 </div>
             <div id="diagram-area">
@@ -201,228 +201,120 @@
         </div>
 
         <div id="navigation" class="mt-8 flex justify-between items-center">
-            <button id="prev-button" class="nav-button bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-opacity-75">
+            <button id="prev-button" class="nav-button bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75">
                 Previous
             </button>
-            <button id="next-button" class="nav-button bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-opacity-75">
+            <button id="next-button" class="nav-button bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75">
                 Next
             </button>
         </div>
-         <p class="text-center text-xs text-gray-500 mt-8">Try drawing your own ray diagrams to understand image formation!</p>
+         <p class="text-center text-xs text-gray-500 mt-8">Think about examples of waves you see and hear every day!</p>
     </div>
 
     <script>
         const topics = [
             {
-                title: "Introduction to Reflection at Curved Surfaces",
+                title: "What is a Wave?",
                 content: `
-                    <p>This chapter considers the reflection of light by curved surfaces, following up on reflection by plane mirrors from Book One.</p>
-                    <p>Curved surfaces have a wide range of scientific and practical applications, such as in shaving mirrors, driving mirrors, searchlights, and telescopes.</p>
+                    <p>A wave is fundamentally the <strong>transmission of a disturbance</strong>. This disturbance propagates outwards from its point of origin, effectively transferring <strong>energy</strong> without causing a net movement of the medium itself from one location to another.</p>
+                    <p>Waves play a significant role in various aspects of daily life, including radio and television transmission, mobile communication, remote control systems, and the transfer of heat energy via radiation.</p>
                 `,
-                explanation: "We've learned how light bounces off flat mirrors. Now, let's see what happens when mirrors are curved! These are used in many cool things, from your car's side mirror to giant telescopes.",
-                diagramPlaceholder: null
+                explanation: "Imagine dropping a pebble in a pond. The ripples that spread out are waves! A wave is basically a way energy travels through a disturbance, without the actual stuff (like water particles) moving far from its spot.",
+                diagramPlaceholder: "[Diagram: A pebble dropped into still water, showing circular ripples (waves) spreading outwards from the point of impact.]"
             },
             {
-                title: "Types of Curved Surfaces and Mirrors",
+                title: "Classification of Waves: Electromagnetic vs. Mechanical",
                 content: `
-                    <p>Curved surfaces can be obtained from hollow shapes like spheres, cones, or cylinders. When these surfaces are highly polished, they act as reflectors.</p>
-                    <p>From a hollow metal sphere, if the inner surface is highly polished, the portion is a <strong>concave reflector</strong>. If the outer surface is highly polished, it is a <strong>convex reflector</strong>.</p>
-                    <p>Curved mirrors can be made by applying silvery paint on part of a hollow glass sphere, cylinder, or cone.</p>
-                    <p>A reflecting surface curving inwards is called a <strong>concave mirror</strong>. A reflecting surface bulging outwards is called a <strong>convex mirror</strong>.</p>
-                    <p>Mirrors made from spheres are called <strong>spherical mirrors</strong>.</p>
-                    <p>A <strong>parabolic mirror</strong> is a special curved mirror cut from a section of a cone. A concave parabolic reflector is obtained by applying silvery paint on the outside of the cone.</p>
-                `,
-                explanation: "Imagine a shiny ball. If the inside part is like a mirror, it's 'concave' (like a cave). If the outside part is the mirror, it's 'convex' (bulging out). Most curved mirrors we study are parts of spheres, but there are also special 'parabolic' ones.",
-                diagramPlaceholder: "[Diagram: Show a sphere. Then show a section cut from it to form a concave mirror (inner surface reflecting) and another section to form a convex mirror (outer surface reflecting). Label each clearly.]"
-            },
-            {
-                title: "Definition of Terms (Part 1)",
-                content: `
-                    <p>The <strong>aperture</strong> of the mirror is the effective diameter of the light reflecting area.</p>
-                    <p>The <strong>pole (P)</strong> is the center of the mirror.</p>
-                    <p>The <strong>centre of curvature (C)</strong> is the center of the sphere of which the mirror is a part. For a concave mirror, C is in front of the mirror, while for a convex mirror, C is behind the mirror.</p>
-                    <p>The <strong>principal axis</strong> is the line drawn through the pole of the mirror and the center of curvature. It is also called the main axis.</p>
-                `,
-                explanation: "Let's learn some mirror words! 'Aperture' is how wide the mirror is. 'Pole (P)' is the very middle point of the mirror's surface. 'Centre of Curvature (C)' is the center of the big sphere the mirror was cut from. 'Principal Axis' is a straight line going through P and C.",
-                diagramPlaceholder: "[Diagram: Show both a concave and a convex mirror. For each, label: Aperture, Pole (P), Centre of Curvature (C), and the Principal Axis. Clearly show C in front for concave and behind for convex.]"
-            },
-            {
-                title: "Definition of Terms (Part 2: Focus & Focal Length)",
-                content: `
-                    <p>The <strong>principal focus (F)</strong> is a point on the principal axis. For a concave mirror, it is the point where all rays parallel and close to the principal axis converge after reflection. For a convex mirror, it is the point from which these rays appear to diverge after reflection.</p>
-                    <p>The principal focus of a concave mirror is a <strong>real focus</strong> because reflected rays actually pass through it. The principal focus of a convex mirror is a <strong>virtual focus</strong> because reflected rays only appear to pass through it.</p>
-                    <p>The <strong>focal plane</strong> is a plane perpendicular to the principal axis that passes through the principal focus. Parallel rays not parallel to the principal axis converge at a point on the focal plane.</p>
-                    <p>The <strong>radius of curvature (r)</strong> is the radius of the sphere of which the mirror is part (distance PC).</p>
-                    <p>The <strong>focal length (f)</strong> is the distance from the pole of the mirror to its principal focus (distance PF).</p>
-                `,
-                explanation: "The 'Principal Focus (F)' is a super important spot! For concave mirrors, parallel light rays meet (converge) at F after bouncing off – it's a 'real' focus. For convex mirrors, parallel rays spread out (diverge) as if they came from F behind the mirror – it's a 'virtual' focus. 'Focal length (f)' is the distance from P to F.",
-                diagramPlaceholder: "[Diagram 1: Concave mirror showing parallel rays converging at F (real focus). Label f and r. Diagram 2: Convex mirror showing parallel rays appearing to diverge from F behind the mirror (virtual focus). Label f and r.]"
-            },
-            {
-                title: "Reflection of Light & Laws",
-                content: `
-                    <p>Concave mirrors cause parallel rays to converge at the principal focus F after reflection. Convex mirrors cause parallel rays to be reflected so that they appear to diverge from the principal focus F behind the mirror.</p>
-                    <p>If a ray converges at the principal focus (for concave) or appears to be directed towards it (for convex), it is reflected as a parallel beam.</p>
-                    <p>This behavior demonstrates the <strong>principle of reversibility of light</strong>, which states that light will follow the same path if its direction is reversed.</p>
-                    <p>Reflection by curved mirrors <strong>obeys the laws of reflection</strong>:</p>
+                    <p>Waves can be broadly categorized based on whether they require a medium for transmission:</p>
                     <ul>
-                        <li>The incident ray, reflected ray, and the normal lie on the same plane at the point of incidence.</li>
-                        <li>The angle of incidence (i) equals the angle of reflection (r).</li>
-                    </ul>
-                    <p>The normal drawn at the point of incidence on a curved mirror passes through the center of curvature C.</p>
-                    <p>For rays close and parallel to the principal axis, the focal length (f) is half the radius of curvature (r), i.e., <strong>f = r/2</strong>.</p>
-                `,
-                explanation: "Light behaves predictably! Concave mirrors bring parallel rays together at F. Convex mirrors spread them out as if from F. Light can also go the other way (reversibility). The basic rules of reflection (angle in = angle out) still apply, and the 'normal' line at any point on a curved mirror always points through C. A key fact: focal length (f) is half the radius of curvature (r), so f = r/2.",
-                diagramPlaceholder: "[Diagram: Show a curved mirror surface. At a point of incidence, draw an incident ray, a reflected ray, and the normal line passing through C. Label angle i and angle r.]"
-            },
-            {
-                title: "Ray Diagrams: Useful Rays",
-                content: `
-                    <p>Ray diagrams are used to explain how images are formed by curved mirrors and their characteristics. The reflecting surface is represented by a straight line with a small curve indicating the mirror type. The object is shown as a straight line perpendicular to the principal axis.</p>
-                    <p>Four special rays are useful for constructing ray diagrams:</p>
-                    <ol>
-                        <li>A ray through C (or appearing to pass through C) is <strong>reflected along the same path</strong>.</li>
-                        <li>A ray close and parallel to the principal axis is <strong>reflected through F</strong> (concave) or appears to <strong>emerge from F</strong> (convex).</li>
-                        <li>A ray through F (concave) or appearing to be directed to F (convex) is <strong>reflected parallel to the principal axis</strong>.</li>
-                        <li>A ray at an angle to the principal axis incident at the Pole (P) is reflected such that the <strong>angle of incidence equals the angle of reflection</strong> (principal axis acts as normal).</li>
-                    </ol>
-                `,
-                explanation: "To figure out where an image will form, we draw 'ray diagrams'. We use a few easy-to-draw rays: 1. A ray going through C bounces straight back. 2. A ray parallel to the main axis goes through F (or looks like it came from F). 3. A ray going through F (or aiming at F) bounces off parallel to the main axis. 4. A ray hitting the pole (P) bounces off at the same angle.",
-                diagramPlaceholder: "[Diagrams: For BOTH a concave and a convex mirror, illustrate each of the four special rays separately. Show the object as an arrow.]"
-            },
-            {
-                title: "Image Formation: Concave Mirror (Object Beyond C)",
-                content: `
-                    <p>For concave mirrors, the nature, size, and position of the image depend on the object's position from the mirror.</p>
-                    <p><strong>Object beyond C:</strong> Image is between C and F, real, inverted, and smaller than the object.</p>
-                `,
-                explanation: "With a concave mirror, if you place an object far away (beyond C), the image formed will be: between C and F, real (can be projected on a screen), upside down (inverted), and smaller.",
-                diagramPlaceholder: "[Diagram: Concave mirror with an object placed beyond C. Use at least two special rays to locate the image between C and F. Label object, image, C, F, P. Indicate image characteristics: real, inverted, diminished.]"
-            },
-            {
-                title: "Image Formation: Concave Mirror (Object at C)",
-                content: `
-                    <p><strong>Object at C:</strong> Image is at C, real, inverted, and the same size as the object.</p>
-                `,
-                explanation: "If the object is exactly at C for a concave mirror, the image also forms at C. It will be real, inverted, and the same size as the object.",
-                diagramPlaceholder: "[Diagram: Concave mirror with an object placed at C. Use rays to locate the image at C. Indicate image characteristics: real, inverted, same size.]"
-            },
-            {
-                title: "Image Formation: Concave Mirror (Object Between C & F)",
-                content: `
-                    <p><strong>Object between C and F:</strong> Image is beyond C, real, inverted, and magnified (larger than the object).</p>
-                `,
-                explanation: "Place an object between C and F in a concave mirror, and the image will be: beyond C, real, inverted, and bigger (magnified).",
-                diagramPlaceholder: "[Diagram: Concave mirror with an object placed between C and F. Use rays to locate the image beyond C. Indicate image characteristics: real, inverted, magnified.]"
-            },
-            {
-                title: "Image Formation: Concave Mirror (Object at F)",
-                content: `
-                    <p><strong>Object at F:</strong> Image is formed at infinity because reflected rays emerge parallel.</p>
-                `,
-                explanation: "If you put the object right at the focus (F) of a concave mirror, the reflected rays become parallel, so they never meet to form an image. We say the image is 'at infinity'.",
-                diagramPlaceholder: "[Diagram: Concave mirror with an object placed at F. Show reflected rays emerging parallel to each other.]"
-            },
-            {
-                title: "Image Formation: Concave Mirror (Object Between F & P)",
-                content: `
-                    <p><strong>Object between F and P:</strong> Image is behind the mirror, virtual, erect (upright), and larger than the object.</p>
-                    <p>A <strong>real image</strong> can be focused on a screen and is formed by a convergent reflected beam. Real images are represented by full lines.</p>
-                    <p>A <strong>virtual image</strong> is formed by the apparent intersection of rays and cannot be formed on a screen. Virtual images are formed by a divergent reflected beam. Virtual rays and images are represented by dotted lines.</p>
-                `,
-                explanation: "This is how a shaving or makeup mirror works! Object very close (between F and P) to a concave mirror gives an image that's: behind the mirror, virtual (can't project it, you see it *in* the mirror), upright, and magnified. Real images use solid lines in diagrams; virtual images use dotted lines.",
-                diagramPlaceholder: "[Diagram: Concave mirror with an object placed between F and P. Use rays (extending virtual rays behind the mirror with dotted lines) to locate the virtual, erect, magnified image behind the mirror.]"
-            },
-            {
-                title: "Image Formation: Convex Mirror",
-                content: `
-                    <p>For convex mirrors, images are <strong>always upright, smaller than the object, and located between P and F</strong> (behind the mirror).</p>
-                `,
-                explanation: "Convex mirrors (like security mirrors in shops or some car side mirrors) are simpler! No matter where you put the object, the image is ALWAYS: behind the mirror, virtual, upright, and smaller than the object. It gives a wide view.",
-                diagramPlaceholder: "[Diagram: Convex mirror with an object placed in front. Use rays (extending virtual rays behind the mirror) to locate the virtual, erect, diminished image between P and F behind the mirror.]"
-            },
-            {
-                title: "Linear Magnification",
-                content: `
-                    <p><strong>Linear (or transverse) magnification (m)</strong> is the numerical comparison of the image size to the object size.</p>
-                    <p>It is given by the formula: <strong>m = (image height) / (object height)</strong>.</p>
-                    <p>It can also be given by: <strong>m = v / u</strong>, where v is the image distance and u is the object distance.</p>
-                    <p>Linear magnification has <strong>no units</strong> as it is a ratio of two lengths.</p>
-                `,
-                explanation: "Magnification (m) just tells you how much bigger or smaller the image is compared to the object. If m=2, the image is twice as tall. If m=0.5, it's half as tall. You can calculate it by (image height / object height) OR (image distance / object distance). No units!",
-                diagramPlaceholder: null
-            },
-            {
-                title: "The Mirror Formula",
-                content: `
-                    <p>The relationship between object distance (u), image distance (v), and focal length (f) for spherical mirrors is given by the <strong>mirror formula</strong>:</p>
-                    <p style="text-align:center; font-weight:bold; font-size:1.2em;">1/u + 1/v = 1/f</p>
-                    <p>This can also be written as <strong>f = uv / (u + v)</strong>.</p>
-                    <p>This relationship can be investigated experimentally.</p>
-                `,
-                explanation: "There's a magic math formula for mirrors! It connects the object distance (u), image distance (v), and focal length (f). It's: 1/u + 1/v = 1/f. This helps you calculate where an image will be if you know the other two things.",
-                diagramPlaceholder: null
-            },
-            {
-                title: "Sign Convention (Real-is-Positive)",
-                content: `
-                    <p>To determine the position and nature of images using formulas, a sign convention is used. This book uses the <strong>real-is-positive sign convention</strong>.</p>
-                    <h3>Rules:</h3>
-                    <ol>
-                        <li>All distances are measured from the mirror as the origin (from P).</li>
-                        <li>Distances of <strong>real</strong> objects and images are considered <strong>positive (+)</strong>.</li>
-                        <li>Distances of <strong>virtual</strong> objects and images are considered <strong>negative (-)</strong>.</li>
-                        <li>A concave mirror has a real principal focus and therefore a <strong>positive focal length (+)</strong>.</li>
-                        <li>A convex mirror has a virtual principal focus and therefore a <strong>negative focal length (-)</strong>.</li>
-                    </ol>
-                `,
-                explanation: "When using the mirror formula, we need rules for positive (+) and negative (-) signs. We use 'real-is-positive': Real things (objects, images, focal points) get a '+' sign for their distances/focal lengths. Virtual things get a '-' sign. So, concave mirrors have +f, convex mirrors have -f.",
-                diagramPlaceholder: "[Table: Summarizing the Real-is-Positive sign convention for u, v, and f for concave and convex mirrors, and for real/virtual objects/images.]"
-            },
-            {
-                title: "Applications of Concave Mirrors",
-                content: `
-                    <p>Concave mirrors are used as:</p>
-                    <ul>
-                        <li><strong>Shaving mirrors and by dentists:</strong> The object (face/tooth) is placed within the focal length (between F & P) to obtain a magnified, erect, virtual image.</li>
-                        <li><strong>Reflectors behind a projector lamp:</strong> The lamp is placed at the center of curvature (C) to reflect light traveling away from the projector, increasing illumination.</li>
-                        <li><strong>In Telescopes:</strong> For distant objects (at infinity), rays are parallel and form an image at the focal point.</li>
-                        <li><strong>Solar Concentrators:</strong> The sun's energy is focused at the focal point of a large concave mirror (like in solar cookers).</li>
+                        <li><strong>Electromagnetic Waves:</strong> These waves <strong>do not need a material medium</strong> to travel. Examples include radio waves, radiant heat, light, and microwaves.</li>
+                        <li><strong>Mechanical Waves:</strong> These waves <strong>require a material medium</strong> through which to propagate. Their transmission occurs due to the vibration of the particles within that medium. Examples include water waves and sound waves.</li>
                     </ul>
                 `,
-                explanation: "Concave mirrors are useful! Dentists use them to see a magnified view of your teeth (object between F & P). They're in telescopes to collect light from stars, and in solar cookers to focus sunlight.",
-                diagramPlaceholder: "[Diagrams: Small sketches illustrating 1. Shaving mirror use (object close, magnified virtual image). 2. Telescope principle (parallel rays from distant object focusing). 3. Solar concentrator focusing sun's rays.]"
+                explanation: "There are two main wave families: 'Electromagnetic' waves (like light or radio waves) are special because they can travel through empty space (like from the Sun to Earth). 'Mechanical' waves (like sound or water waves) need some 'stuff' (a medium like air or water) to travel through.",
+                diagramPlaceholder: "[Diagram: Side-by-side comparison. Left: Sun emitting light waves traveling through space to Earth (Electromagnetic). Right: A person speaking, with sound waves traveling through air particles (Mechanical).]"
             },
             {
-                title: "Applications of Convex Mirrors",
+                title: "Types of Mechanical Waves: Transverse Waves",
                 content: `
-                    <p>Convex mirrors are often used as <strong>driving mirrors</strong> (e.g., side-view mirrors on cars, security mirrors in shops) due to the wide field of view they provide, even though they produce a diminished (smaller) image.</p>
+                    <p>Mechanical waves can be further subdivided into two types based on the direction of particle vibration relative to the wave's direction of travel.</p>
+                    <h3>Transverse Waves:</h3>
+                    <p>In a transverse wave, the <strong>vibration of the particles in the medium occurs at right angles (perpendicular)</strong> to the direction in which the wave is traveling.</p>
+                    <p><strong>Examples:</strong> Water waves, waves moving along a stretched string or rope, and all electromagnetic waves (such as light, radio waves, and microwaves) are examples of transverse waves.</p>
+                    <p><strong>Illustration:</strong> One way to visualize a transverse wave is by moving one end of a slinky spring or rope, which is stretched along a smooth surface and fixed at the other end, up and down at right angles to the spring or rope.</p>
+                    <p><strong>Form:</strong> Transverse waves propagate as a series of <strong>crests</strong> (points of maximum upward displacement) and <strong>troughs</strong> (points of maximum downward displacement). In the context of water waves, a toy boat placed in the path of the ripples will bob up and down but will not be moved towards the edge of the pond.</p>
                 `,
-                explanation: "Convex mirrors give you a wide view of what's around, even if things look smaller. That's why they're great for car side mirrors or security mirrors in shops – you can see a lot at once!",
-                diagramPlaceholder: "[Diagram: Sketch of a car's side-view convex mirror showing a wide field of view with diminished images of objects behind the car.]"
+                explanation: "In 'Transverse' waves, the particles jiggle up and down (or side to side) while the wave itself moves forward. Think of doing 'the wave' in a stadium – people move up and down, but the wave travels around. Water waves and light waves are like this. They have high points (crests) and low points (troughs).",
+                diagramPlaceholder: "[Diagram: A stretched rope or slinky spring. Show one end being moved up and down, creating a wave pattern with clearly labeled crests and troughs moving along the rope. Indicate particle motion (up/down) and wave direction (sideways) with arrows.]"
             },
             {
-                title: "Defects of Spherical Mirrors: Spherical Aberration",
+                title: "Types of Mechanical Waves: Longitudinal Waves",
                 content: `
-                    <p>A main defect of spherical mirrors, especially those with a wide aperture, is <strong>spherical aberration</strong>.</p>
-                    <p>Spherical aberration occurs because parallel rays far from the principal axis are brought to a focus at a different point than rays close to the axis. This results in a <strong>blurred focus</strong> instead of a single sharp point.</p>
-                    <p>The reflected rays intersect to form a surface called a <strong>caustic curve</strong>. A bright caustic curve can be seen on the surface of tea in a cup.</p>
+                    <h3>Longitudinal Waves:</h3>
+                    <p>In a longitudinal wave, the <strong>vibration of the particles in the medium is in a direction parallel</strong> to the direction of the wave's travel.</p>
+                    <p><strong>Examples:</strong> Sound waves are the primary example of longitudinal waves.</p>
+                    <p><strong>Illustration:</strong> Longitudinal waves can be demonstrated by vibrating one end of a slinky spring, fixed at the other end, with a back-and-forth motion along its length.</p>
+                    <p><strong>Form:</strong> This to-and-fro movement creates regions where the particles are pushed closer together, called <strong>compressions</strong>, alternating with regions where the particles are pulled farther apart, called <strong>rarefactions</strong>, along the length of the spring.</p>
+                    <p><strong>Particle Spacing and Pressure:</strong> Longitudinal wave motion affects the spacing between particles; they are closer in compressions and farther apart in rarefactions. This variation in spacing is associated with a variation in pressure (higher in compressions, lower in rarefactions).</p>
                 `,
-                explanation: "Spherical mirrors aren't perfect. 'Spherical aberration' means that light rays hitting the edges of a wide spherical mirror don't focus at exactly the same spot as rays hitting the center. This makes the image a bit blurry. You can sometimes see a bright curved line (caustic curve) in a teacup – that's related!",
-                diagramPlaceholder: "[Diagram: A wide aperture spherical concave mirror showing parallel rays. Rays near the principal axis focus at F, while rays further from the axis focus at a point closer to the mirror. Clearly show the blurred focus region and indicate the caustic curve.]"
+                explanation: "In 'Longitudinal' waves, the particles jiggle back and forth in the SAME direction the wave is traveling. Think of pushing and pulling a slinky. Sound waves are like this. They have squished-up parts (compressions) and stretched-out parts (rarefactions).",
+                diagramPlaceholder: "[Diagram: A slinky spring. Show one end being pushed and pulled, creating regions of compressions (coils close together) and rarefactions (coils spread apart) moving along the spring. Indicate particle motion (back/forth) and wave direction (sideways) with arrows.]"
             },
             {
-                title: "Overcoming Spherical Aberration: Parabolic Mirrors",
+                title: "Progressive Waves, Pulses, and Wave Trains",
                 content: `
-                    <p>Due to spherical aberration, spherical mirrors are not ideal for applications requiring a concentrated parallel beam from a source at F, as light from the outer parts diverges.</p>
-                    <p>A <strong>parabolic mirror overcomes spherical aberration</strong>. Its shape ensures that all parallel rays incident on it are brought to a single focus at the principal focus F.</p>
-                    <p>By the principle of reversibility, a light source placed at the principal focus of a parabolic mirror produces a <strong>parallel beam after reflection</strong>.</p>
-                    <p><strong>Parabolic concave mirrors</strong> are used in searchlights, car headlights, and hand torches to produce a high-intensity parallel beam.</p>
+                    <h3>Progressive Waves:</h3>
+                    <p>These are waves that <strong>continuously move away from their source</strong>. Both transverse and longitudinal waves can be progressive. As a progressive wave spreads out from its source, the energy it carries is distributed over an increasingly large area, which leads to a gradual decrease in the wave's <strong>amplitude</strong>.</p>
+                    <h3>Pulses:</h3>
+                    <p>A pulse is generated when a <strong>single vibration</strong> is introduced into a medium. Like progressive waves, pulses can be either transverse or longitudinal.</p>
+                    <h3>Wave Trains:</h3>
+                    <p>Wave trains are produced by <strong>continuous vibrations occurring at a steady rate</strong> within a medium. This results in a repeating pattern (crests/troughs or compressions/rarefactions).</p>
                 `,
-                explanation: "To fix blurry focus (spherical aberration), we use 'parabolic' mirrors. Their special curve makes ALL parallel light rays meet at one perfect focus point. If you put a light bulb at the focus of a parabolic mirror, you get a strong, straight beam of light – perfect for car headlights and searchlights!",
-                diagramPlaceholder: "[Diagram 1: A parabolic concave mirror showing all parallel incident rays converging perfectly at a single principal focus F. Diagram 2: A light source placed at F of a parabolic mirror, showing reflected rays forming a parallel beam.]"
+                explanation: "'Progressive waves' just keep on traveling away from where they started. A 'pulse' is like a single 'blip' or a single wave (like one flick of a rope). A 'wave train' is a whole series of these waves following each other, like continuous ripples.",
+                diagramPlaceholder: "[Diagram: 1. A single pulse traveling along a rope. 2. A continuous wave train (multiple crests and troughs) traveling along a rope.]"
+            },
+            {
+                title: "Characteristics of Wave Motion: Amplitude & Frequency",
+                content: `
+                    <p>Understanding wave motion involves several key terms:</p>
+                    <p><strong>Amplitude (A):</strong> The <strong>maximum displacement</strong> of a particle or point in the medium from its mean (equilibrium) position on either side. Its SI unit is the <strong>metre (m)</strong>. In a transverse wave, it is the height of a crest or the depth of a trough relative to the equilibrium line.</p>
+                    <p><strong>Frequency (f):</strong> The <strong>number of complete oscillations or cycles</strong> made by a vibrating particle or wave source in one second. The frequency of a wave is determined by the rate at which its source vibrates. The standard unit of frequency is the <strong>hertz (Hz)</strong> (cycles per second).</p>
+                `,
+                explanation: "'Amplitude' is how big the wave is – for water waves, it's how high the crest is from the calm water level. 'Frequency' is how many full waves pass by a point every second. We measure frequency in Hertz (Hz).",
+                diagramPlaceholder: "[Diagram: A transverse wave. Clearly label the Amplitude (A) from the equilibrium line to a crest and also to a trough. Show multiple waves passing a point to illustrate frequency conceptually.]"
+            },
+            {
+                title: "Characteristics of Wave Motion: Period & Wavelength",
+                content: `
+                    <p><strong>Period (T):</strong> The <strong>time taken</strong> for a vibrating particle or wave to complete one full oscillation or cycle. The SI unit of period is the <strong>second (s)</strong>. Frequency and period are inversely related: <strong>f = 1/T</strong> and <strong>T = 1/f</strong>.</p>
+                    <p><strong>Wavelength (λ):</strong> The <strong>distance between two points on a wave train that are in phase</strong>. More specifically, it is the distance between two consecutive crests or troughs in a transverse wave, or the distance between two consecutive compressions or rarefactions in a longitudinal wave. The SI unit for wavelength is the <strong>metre (m)</strong>.</p>
+                `,
+                explanation: "'Period' is the time it takes for one complete wave to pass by. It's the flip side of frequency (T = 1/f). 'Wavelength' (shown by the Greek letter lambda, λ) is the distance from one crest to the next crest, or one trough to the next trough (or one compression to the next compression).",
+                diagramPlaceholder: "[Diagram: A transverse wave. Clearly label the Wavelength (λ) as the distance between two consecutive crests. Also, show one complete cycle and label its duration as the Period (T). For a longitudinal wave, show λ as the distance between two consecutive compressions.]"
+            },
+            {
+                title: "Characteristics of Wave Motion: Speed & Phase",
+                content: `
+                    <p><strong>Speed (v):</strong> The <strong>distance covered by a wave in one second</strong> as it travels through the medium. Its SI unit is <strong>metres per second (m/s)</strong>. For a given medium, the speed of a wave is generally considered constant.</p>
+                    <h3>Phase and Phase Difference:</h3>
+                    <p>Particles undergoing wave motion that are vibrating in the same direction and have the same instantaneous displacement from equilibrium are described as being <strong>in phase</strong>. Their displacement-time graphs would be identical. When particles are not in phase, they are described as being <strong>out of phase</strong>. For example, if one particle is at its maximum positive displacement while another is at its maximum negative displacement, they are 180° out of phase.</p>
+                `,
+                explanation: "'Wave speed' is simply how fast the wave is traveling. 'In phase' means two points on a wave are doing exactly the same thing at the same time (e.g., both at the top of a crest). 'Out of phase' means they are doing different things (e.g., one is at a crest, another is at a trough).",
+                diagramPlaceholder: "[Diagram: Two points on a transverse wave that are in phase (e.g., two adjacent crests, or two points one wavelength apart starting at equilibrium and moving upwards). Show two other points that are 180° out of phase (e.g., a crest and an adjacent trough).]"
+            },
+            {
+                title: "Relationship: Speed, Wavelength, and Frequency",
+                content: `
+                    <p>The speed (v) of a wave, its frequency (f), and its wavelength (λ) are related by a fundamental equation: <strong>v = fλ</strong></p>
+                    <p>This equation indicates that the velocity of a wave is equal to the product of its frequency and wavelength. Since the speed of a wave is typically constant within a specific medium, this relationship shows that if the frequency increases, the wavelength must decrease proportionally, and vice versa.</p>
+                    <p><strong>Example 1:</strong> Waves on a spring: 20 wavelengths pass in 5s (f = 4 Hz). λ = 0.01 m. Speed v = fλ = 4 Hz × 0.01 m = 0.04 m/s. Period T = 1/f = 0.25 s.</p>
+                    <p><strong>Example 2:</strong> Water wave travels 12 m in 4 s (v = 3 m/s). f = 2 Hz. Wavelength λ = v/f = 3 m/s / 2 Hz = 1.5 m.</p>
+                    <p><strong>Example 3:</strong> Wave on a string: v = 10.0 m/s, λ = 40 cm (0.4 m). Frequency f = v/λ = 10.0 m/s / 0.4 m = 25 Hz. Period T = 1/f = 0.04 s.</p>
+                `,
+                explanation: "There's a super important formula connecting wave speed (v), frequency (f), and wavelength (λ):  v = f × λ.  This means if you know any two, you can find the third! If the speed in a material stays the same, then if frequency goes up, wavelength must go down, and vice-versa.",
+                diagramPlaceholder: "[Diagram: A visual representation of the formula v = fλ. Perhaps show a wave train, label v, f, and λ, and connect them with the formula clearly displayed.]"
             }
-            // Revision questions are not included as interactive steps here.
+            // Revision questions are not included as interactive steps.
         ];
 
         let currentTopicIndex = 0;
