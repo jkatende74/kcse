@@ -222,10 +222,10 @@
         const interTopicNavigationLinks = [
             { title: "Magnetism", href: "magnetism.html" },
             { title: "Measurement (II)", href: "measurment_2.html" },
-            { title: "Turning Effect of a Force", href: "turning_effect_of_a_force.html" },
+            { title: "Turning Effect of a Force", href: "kcse/turning_effect_of_a_force.html" },
             { title: "Equilibrium and Centre of Gravity", href: "equillibrium_and_center_of_gravity.html" },
             { title: "Reflection of Curved Surfaces", href: "reflection_at_curved_surfaces.html" },
-            { title: "Magnetic Effect of an Electric Current", href: "magnetic_effect_of_an_electric_current.html" },
+            { title: "Magnetic Effect of an Electric Current", href: "kcse/magnetic_effect_of_an_electric_current.html" },
             { title: "Hooke’s Law", href: "hookes_law.html" },
             { title: "Waves", href: "waves.html" },
             { title: "Sound I", href: "sound_1.html" },
@@ -556,7 +556,7 @@
                 // Handle index.html or root path for magnetism.html specifically
                 // For measurment_2.html, the check is direct.
                 if (currentPageFilename === topicLink.href || 
-                    ( (currentPageFilename === '' || currentPageFilename === 'index.html') && topicLink.href === 'magnetism.html') ) { // Keep magnetism specific for now
+                    ( (currentPageFilename === '' || currentPageFilename === 'index.html') && topicLink.href === 'measurment_2.html') ) { // Keep magnetism specific for now
                     menuItem.classList.add('active-topic', 'bg-blue-500', 'text-white');
                     const spanElement = Array.from(menuButton.childNodes).find(node => node.nodeName === 'SPAN');
                     if (spanElement) {
